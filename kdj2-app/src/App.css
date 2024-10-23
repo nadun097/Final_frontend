@@ -8,10 +8,17 @@
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  .App-logo {
+  .App-logo { 
     animation: App-logo-spin infinite 20s linear;
   }
+
+  .App-logo:hover {
+    animation: App-logo-spin infinite 2s linear; /* Faster spin on hover */
+    
+  }
 }
+
+
 
 .App-header {
   background-color: #282c34;
@@ -26,6 +33,13 @@
 
 .App-link {
   color: #61dafb;
+  animation: App-logo-spin infinite 20s linear; 
+}
+
+.App-link:hover {
+  color: #fb6161;
+  animation: App-logo-spin infinite 2s linear; /* Faster spin on hover */
+    
 }
 
 @keyframes App-logo-spin {
