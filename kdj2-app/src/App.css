@@ -33,12 +33,12 @@
 
 .App-link {
   color: #61dafb;
-  animation: App-logo-spin infinite 20s linear; 
+ 
 }
 
 .App-link:hover {
   color: #fb6161;
-  animation: App-logo-spin infinite 2s linear; /* Faster spin on hover */
+ 
     
 }
 
