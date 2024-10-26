@@ -1,5 +1,6 @@
-import React from 'react';
-import './Header.css'; // Optional CSS file for styling
+// src/Header.js
+import React from "react";
+import "./App.css";
 
 function Header() {
   return (
@@ -20,7 +21,6 @@ function Header() {
       {/* Search/Profile Section */}
       <div className="right-section">
         <input type="text" placeholder="Search..." className="search-bar" />
-        {/* Alternatively, you could use a profile icon here */}
       </div>
     </header>
   );
