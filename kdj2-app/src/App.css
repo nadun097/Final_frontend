@@ -14,7 +14,7 @@
   }
 
   .App-logo:hover {
-    animation: App-logo-spin infinite 2s linear; /* Faster spin on hover */
+    animation: App-logo-spin infinite 20s linear; /* Faster spin on hover */
   }
 }
 
@@ -33,6 +33,9 @@
   color: #61dafb;
 }
 
+.App-link:hover {
+  color: #8abcca;
+}
 
 
 @keyframes App-logo-spin {
