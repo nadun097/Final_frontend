@@ -1,4 +1,4 @@
-/* src/App.css */
+
 .App {
   text-align: center;
 }
@@ -14,7 +14,7 @@
   }
 
   .App-logo:hover {
-    animation: App-logo-spin infinite 20s linear; /* Faster spin on hover */
+    animation: App-logo-spin infinite 20s linear; 
   }
 }
 
