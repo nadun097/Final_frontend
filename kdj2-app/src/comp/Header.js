@@ -1,10 +1,12 @@
-// src/Header.js
+// src/comp/Header.js
 import React from "react";
+import imageSrc from "./assets/werfdew.jpg";
 
-export default function header() {
+
+export default function Header() {
   return (
     <div>
-      <h2>React</h2>
+      <img src={imageSrc} alt="Description of image" />
     </div>
   );
 }
