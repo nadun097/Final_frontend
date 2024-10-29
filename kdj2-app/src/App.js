@@ -1,15 +1,13 @@
 // src/App.js
 import React from "react";
 import "./App.css";
-
-import logo from "./logo.svg";
+import Header from "./header.js";
 
 function App() {
   return (
     <div className="App">
-
-<h1>this my first project</h1>
-   
+      <Header />
+      <h1>This is my first project</h1>
     </div>
   );
 }
