@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import imageSrc from "../assets/werfdew.jpg";
+import imageSrc from "../assets/werfdew.jpg.png";
 import "./Header.css";
 
 export default function Header() {
