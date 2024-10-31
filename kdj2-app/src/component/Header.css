@@ -1,0 +1,80 @@
+/* Header.css */
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding:10px 10px;
+  background: linear-gradient(90deg, #c79afa, #c296ff, #ac8ef8);
+  color: #fff;
+  font-family: Arial, sans-serif;
+  font-weight: bold;
+}
+
+.logo {
+  height: 60px;
+  margin-right: 20px;
+}
+
+.nav-page {
+  list-style: none;
+  display: flex;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-page li {
+  font-size: 14px;
+  cursor: pointer;
+  text-transform: uppercase;
+  color: #f3e1fc;
+  padding: 4px 15px;
+  border-radius: 4px;
+  transition: background-color 0.3s, color 0.3s, transform 0.3s;
+}
+
+.nav-page li:hover {
+  color: #ffffff;
+  /* transform: scale(1.05);  */
+}
+
+.nav-page li.active {
+  background-color: #d5b3fc; 
+  color: #ffffff;
+}
+
+
+.right-section {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.search-input {
+  padding: 5px 10px;
+  border-radius: 2px;
+  border: none;
+  outline: none;
+  font-size: 14px;
+  background-color: #f2e5ff;
+}
+
+.icon {
+  font-size: 18px;
+  cursor: pointer;
+  color: #fff;
+}
+
+.profile-icon {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.notification-icon:hover,
+.settings-icon:hover,
+.profile-icon:hover {
+  opacity: 0.8;
+}
