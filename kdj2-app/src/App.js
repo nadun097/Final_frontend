@@ -2,6 +2,8 @@
 import React from "react";
 import "./App.css";
 import Header from "./component/Header.js";
+import About from "./About.js";
+import TrInterface from "./TrInterface.js"; 
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 function App() {
@@ -10,10 +12,11 @@ function App() {
       <div className="App">
         <Header />
         <Switch>
-          <Route path="/">
-            <div>
-              {/* Your main interface component or content goes here */}
-            </div>
+          <Route exact path="/">
+            <TrInterface />
+          </Route>
+          <Route path="/about">
+            <About />
           </Route>
         </Switch>
       </div>
