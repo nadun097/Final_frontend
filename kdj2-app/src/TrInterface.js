@@ -3,69 +3,61 @@ import './KanbanBoard.css';
 
 export default function KanbanBoard() {
   const [columns, setColumns] = useState([
-    { 
-      title: 'Pending', 
-      cards: [
-        {
-          title: 'Design Website',
-          description: 'Create initial design mockups for the client.',
-          image: 'https://via.placeholder.com/150',
-          employees: [
-            { name: 'Alice', avatar: 'https://via.placeholder.com/30' },
-            { name: 'Bob', avatar: 'https://via.placeholder.com/30' },
-            { name: 'Charlie', avatar: 'https://via.placeholder.com/30' }
-          ]
-        },
-      ]
-    },
-    { 
-      title: 'Ongoing', 
-      cards: [
-        {
-          title: 'Develop Landing Page',
-          description: 'Code the landing page using React and CSS.',
-          image: 'https://via.placeholder.com/150',
-          employees: [
-            { name: 'David', avatar: 'https://via.placeholder.com/30' },
-            { name: 'Eva', avatar: 'https://via.placeholder.com/30' }
-          ]
-        },
-      ]
-    },
+    { title: 'Pending', cards: [] },
+    { title: 'Ongoing', cards: [] },
     { title: 'Accomplished', cards: [] },
     { title: 'Expired', cards: [] },
   ]);
-
+  
   const [newColumnTitle, setNewColumnTitle] = useState('');
+  const [showModal, setShowModal] = useState(false);
+  const [jobDetails, setJobDetails] = useState({
+    title: '',
+    description: '',
+    image: '',
+    employees: []
+  });
+  const [employeeName, setEmployeeName] = useState('');
+  const [selectedColumn, setSelectedColumn] = useState(null);
 
-  // Add a new column
-  const handleAddColumn = () => {
-    if (newColumnTitle.trim() === '') return;
-    setColumns([...columns, { title: newColumnTitle, cards: [] }]);
-    setNewColumnTitle('');
+  // Show modal to add a new job
+  const handleAddJob = (columnIndex) => {
+    setSelectedColumn(columnIndex);
+    setShowModal(true);
   };
 
-  // Add a new job (card) to a specific column
-  const handleAddJob = (columnIndex) => {
-    const newJobTitle = prompt('Enter job title');
-    const newJobDescription = prompt('Enter job description');
-    if (newJobTitle && newJobDescription) {
-      const newCard = {
-        title: newJobTitle,
-        description: newJobDescription,
-        image: 'https://via.placeholder.com/150',
-        employees: [],
-      };
-      const updatedColumns = columns.map((col, index) => 
-        index === columnIndex ? { ...col, cards: [...col.cards, newCard] } : col
-      );
-      setColumns(updatedColumns);
-    }
+  // Handle form inputs
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setJobDetails((prevDetails) => ({ ...prevDetails, [name]: value }));
+  };
+
+  // Add employee to job
+  const handleAddEmployee = () => {
+    if (employeeName.trim() === '') return;
+    setJobDetails((prevDetails) => ({
+      ...prevDetails,
+      employees: [...prevDetails.employees, { name: employeeName, avatar: 'https://via.placeholder.com/30' }]
+    }));
+    setEmployeeName('');
+  };
+
+  // Submit the job and close modal
+  const handleSubmit = () => {
+    const newCard = {
+      ...jobDetails,
+      image: jobDetails.image || 'https://via.placeholder.com/150',
+    };
+    const updatedColumns = columns.map((col, index) =>
+      index === selectedColumn ? { ...col, cards: [...col.cards, newCard] } : col
+    );
+    setColumns(updatedColumns);
+    setShowModal(false);
+    setJobDetails({ title: '', description: '', image: '', employees: [] });
   };
 
   return (
     <div className="kanban-container">
-      {/* Top right corner for adding a new list */}
       <div className="add-list-container">
         <input
           type="text"
@@ -73,31 +65,25 @@ export default function KanbanBoard() {
           onChange={(e) => setNewColumnTitle(e.target.value)}
           placeholder="Enter list title"
         />
-        <button onClick={handleAddColumn}>Add List</button>
+        <button onClick={() => setColumns([...columns, { title: newColumnTitle, cards: [] }])}>Add List</button>
       </div>
 
-      {/* Kanban Board */}
       <div className="kanban-board">
         {columns.map((column, index) => (
           <div key={index} className="kanban-column">
             <h3>{column.title}</h3>
             {column.cards.map((card, cardIndex) => (
               <div key={cardIndex} className="kanban-card">
-                {/* Card Image */}
                 <div className="card-image">
                   <img src={card.image} alt={`${card.title} visual`} />
                 </div>
-
-                {/* Card Content */}
                 <div className="card-content">
                   <div className="card-title">{card.title}</div>
                   <div className="card-description">{card.description}</div>
                 </div>
-
-                {/* Card Footer with Employee Avatars */}
                 <div className="card-footer">
                   <div className="employee-avatars">
-                    {card.employees.slice(0, 3).map((employee, empIndex) => (
+                    {card.employees.map((employee, empIndex) => (
                       <img 
                         key={empIndex} 
                         src={employee.avatar} 
@@ -114,6 +100,47 @@ export default function KanbanBoard() {
           </div>
         ))}
       </div>
+
+      {/* Modal for Job Details */}
+      {showModal && (
+        <div className="modal">
+          <div className="modal-content">
+            <h2>Job Details</h2>
+            <label>Enter job title</label>
+            <input type="text" name="title" value={jobDetails.title} onChange={handleInputChange} />
+            <label>Enter job description</label>
+            <textarea name="description" value={jobDetails.description} onChange={handleInputChange}></textarea>
+            <label>Upload photo URL</label>
+            <input type="text" name="image" value={jobDetails.image} onChange={handleInputChange} />
+
+            {/* Employee Adding Section */}
+            <label>Enter Workers in this project</label>
+            <div className="employee-input">
+              <input
+                type="text"
+                value={employeeName}
+                onChange={(e) => setEmployeeName(e.target.value)}
+                placeholder="Enter employee name"
+              />
+              <button onClick={handleAddEmployee}>Add Employee</button>
+            </div>
+            <div className="employee-avatars">
+              {jobDetails.employees.map((employee, empIndex) => (
+                <img
+                  key={empIndex}
+                  src={employee.avatar}
+                  alt={employee.name}
+                  className="employee-avatar"
+                  title={employee.name}
+                />
+              ))}
+            </div>
+
+            <button onClick={handleSubmit}>Save Job</button>
+            <button onClick={() => setShowModal(false)}>Cancel</button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
