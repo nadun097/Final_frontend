@@ -3,10 +3,7 @@ import './KanbanBoard.css';
 
 export default function KanbanBoard() {
   const [columns, setColumns] = useState([
-    { title: 'Pending', cards: [] },
-    { title: 'Ongoing', cards: [] },
-    { title: 'Accomplished', cards: [] },
-    { title: 'Expired', cards: [] },
+ 
   ]);
   
   const [newColumnTitle, setNewColumnTitle] = useState('');
@@ -20,19 +17,25 @@ export default function KanbanBoard() {
   const [employeeName, setEmployeeName] = useState('');
   const [selectedColumn, setSelectedColumn] = useState(null);
 
-  // Show modal to add a new job
   const handleAddJob = (columnIndex) => {
     setSelectedColumn(columnIndex);
     setShowModal(true);
   };
 
-  // Handle form inputs
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setJobDetails((prevDetails) => ({ ...prevDetails, [name]: value }));
   };
 
-  // Add employee to job
+  const handleImageInputChange = (e) => {
+    const { value } = e.target;
+    const isValidURL = value.match(/\.(jpeg|jpg|gif|png)$/) != null;
+    setJobDetails((prevDetails) => ({
+      ...prevDetails,
+      image: isValidURL ? value : '',
+    }));
+  };
+
   const handleAddEmployee = () => {
     if (employeeName.trim() === '') return;
     setJobDetails((prevDetails) => ({
@@ -42,7 +45,6 @@ export default function KanbanBoard() {
     setEmployeeName('');
   };
 
-  // Submit the job and close modal
   const handleSubmit = () => {
     const newCard = {
       ...jobDetails,
@@ -56,6 +58,12 @@ export default function KanbanBoard() {
     setJobDetails({ title: '', description: '', image: '', employees: [] });
   };
 
+  const handleCancel = () => {
+    setShowModal(false);
+    setJobDetails({ title: '', description: '', image: '', employees: [] });
+    setEmployeeName('');
+  };
+
   return (
     <div className="kanban-container">
       <div className="add-list-container">
@@ -65,7 +73,10 @@ export default function KanbanBoard() {
           onChange={(e) => setNewColumnTitle(e.target.value)}
           placeholder="Enter list title"
         />
-        <button onClick={() => setColumns([...columns, { title: newColumnTitle, cards: [] }])}>Add List</button>
+        <button onClick={() => {
+          setColumns([...columns, { title: newColumnTitle, cards: [] }]);
+          setNewColumnTitle('');
+        }}>Add List</button>
       </div>
 
       <div className="kanban-board">
@@ -83,7 +94,7 @@ export default function KanbanBoard() {
                 </div>
                 <div className="card-footer">
                   <div className="employee-avatars">
-                    {card.employees.map((employee, empIndex) => (
+                    {card.employees.slice(0, 3).map((employee, empIndex) => (
                       <img 
                         key={empIndex} 
                         src={employee.avatar} 
@@ -92,6 +103,11 @@ export default function KanbanBoard() {
                         title={employee.name}
                       />
                     ))}
+                    {card.employees.length > 3 && (
+                      <div className="extra-employees">
+                        +{card.employees.length - 3}
+                      </div>
+                    )}
                   </div>
                 </div>
               </div>
@@ -101,7 +117,6 @@ export default function KanbanBoard() {
         ))}
       </div>
 
-      {/* Modal for Job Details */}
       {showModal && (
         <div className="modal">
           <div className="modal-content">
@@ -111,9 +126,8 @@ export default function KanbanBoard() {
             <label>Enter job description</label>
             <textarea name="description" value={jobDetails.description} onChange={handleInputChange}></textarea>
             <label>Upload photo URL</label>
-            <input type="text" name="image" value={jobDetails.image} onChange={handleInputChange} />
+            <input type="text" name="image" value={jobDetails.image} onChange={handleImageInputChange} />
 
-            {/* Employee Adding Section */}
             <label>Enter Workers in this project</label>
             <div className="employee-input">
               <input
@@ -137,7 +151,7 @@ export default function KanbanBoard() {
             </div>
 
             <button onClick={handleSubmit}>Save Job</button>
-            <button onClick={() => setShowModal(false)}>Cancel</button>
+            <button onClick={handleCancel}>Cancel</button>
           </div>
         </div>
       )}
