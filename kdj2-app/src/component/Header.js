@@ -1,16 +1,16 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom"; // Import useNavigate
+import { useNavigate } from "react-router-dom"; 
 import imageSrc from "../assets/werfdew.jpg.png";
 import "./Header.css";
 
 export default function Header() {
   const [activeItem, setActiveItem] = useState("HOME");
-  const navigate = useNavigate(); // Initialize the navigate function
+  const navigate = useNavigate(); 
 
   const handleClick = (item) => {
     setActiveItem(item);
     if (item === "PROJECTS ▼") {
-      navigate("/about"); // Navigate to the About page
+      navigate("/about");
     }
   };
 
