@@ -3,7 +3,10 @@ import './KanbanBoard.css';
 
 export default function KanbanBoard() {
   const [columns, setColumns] = useState([
- 
+    { title: 'Pending', cards: [] },
+    { title: 'Ongoing', cards: [] },
+    { title: 'Accomplished', cards: [] },
+    { title: 'Expired', cards: [] },
   ]);
   
   const [newColumnTitle, setNewColumnTitle] = useState('');
