@@ -19,8 +19,15 @@
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   text-align: left;
-  margin: 10px;
-  
+  margin: 5px;
+  font-size: 1.7em;
+}
+
+/* Adjusting title spacing */
+.kanban-column h2 {
+  margin: 4px 0; /* Adjusts top and bottom margin */
+  padding: 2px 0; /* Adjusts top and bottom padding */
+  font-size: 1.5em; /* Optional: adjust font size if needed */
 }
 
 .kanban-card {
@@ -42,18 +49,14 @@
 }
 
 .card-title {
-
-  font-size: 1.1em;
+  font-size: 1em;
   font-weight: bold;
   margin: 4px 0;
   color: #333;
-  
 }
 
 .card-description {
- 
-  font-size: 0.9em;
-  
+  font-size: 0.7em;
   color: #666;
   margin-bottom: 8px;
 }
@@ -67,7 +70,6 @@
 
 .employee-avatars {
   display: flex;
-  
 }
 
 .employee-avatar {
@@ -160,6 +162,7 @@
 .modal-content h2 {
   margin-top: 0;
 }
+
 .employee-input {
   display: flex;
   gap: 8px;
@@ -201,6 +204,7 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   margin-left: 4px;
 }
+
 .drag-drop-area {
   width: 100%;
   height: 120px;
@@ -217,6 +221,7 @@
   border-color: #6a0dad;
   background-color: #f4e1ff;
 }
+
 .card-image img {
   margin-top: 15px;
   width: 340px;
@@ -225,9 +230,9 @@
   border-radius: 10px;
   margin-left: 5px;
 }
+
 .modal .drag-drop-area img {
   width: 200px;
   height: 300px;
   border-radius: 8px;
 }
-
