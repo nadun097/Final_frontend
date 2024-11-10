@@ -19,17 +19,21 @@ export default function KanbanBoard() {
   });
   const [employeeName, setEmployeeName] = useState('');
   const [selectedColumn, setSelectedColumn] = useState(null);
+  const [dragOver, setDragOver] = useState(false);
 
+  // Function to add a new job in the selected column
   const handleAddJob = (columnIndex) => {
     setSelectedColumn(columnIndex);
     setShowModal(true);
   };
 
+  // Handle input changes in job details form
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setJobDetails((prevDetails) => ({ ...prevDetails, [name]: value }));
   };
 
+  // Check if entered image URL is valid
   const handleImageInputChange = (e) => {
     const { value } = e.target;
     const isValidURL = value.match(/\.(jpeg|jpg|gif|png)$/) != null;
@@ -39,6 +43,7 @@ export default function KanbanBoard() {
     }));
   };
 
+  // Add an employee to the job
   const handleAddEmployee = () => {
     if (employeeName.trim() === '') return;
     setJobDetails((prevDetails) => ({
@@ -48,6 +53,39 @@ export default function KanbanBoard() {
     setEmployeeName('');
   };
 
+  // Handle drop event for drag-and-drop image upload
+  const handleDrop = (e) => {
+    e.preventDefault();
+    setDragOver(false);
+
+    if (e.dataTransfer.files && e.dataTransfer.files[0]) {
+      const file = e.dataTransfer.files[0];
+      
+      if (file.type.startsWith('image/')) {
+        const reader = new FileReader();
+        reader.onload = () => {
+          setJobDetails((prevDetails) => ({
+            ...prevDetails,
+            image: reader.result, // Set image data URL
+          }));
+        };
+        reader.readAsDataURL(file);
+      }
+    }
+  };
+
+  // Drag over event handler
+  const handleDragOver = (e) => {
+    e.preventDefault();
+    setDragOver(true);
+  };
+
+  // Drag leave event handler
+  const handleDragLeave = () => {
+    setDragOver(false);
+  };
+
+  // Save the job and add it to the column
   const handleSubmit = () => {
     const newCard = {
       ...jobDetails,
@@ -61,6 +99,7 @@ export default function KanbanBoard() {
     setJobDetails({ title: '', description: '', image: '', employees: [] });
   };
 
+  // Cancel and reset job details form
   const handleCancel = () => {
     setShowModal(false);
     setJobDetails({ title: '', description: '', image: '', employees: [] });
@@ -69,6 +108,7 @@ export default function KanbanBoard() {
 
   return (
     <div className="kanban-container">
+      {/* Add List Container */}
       <div className="add-list-container">
         <input
           type="text"
@@ -82,6 +122,7 @@ export default function KanbanBoard() {
         }}>Add List</button>
       </div>
 
+      {/* Kanban Board with Columns and Cards */}
       <div className="kanban-board">
         {columns.map((column, index) => (
           <div key={index} className="kanban-column">
@@ -120,6 +161,7 @@ export default function KanbanBoard() {
         ))}
       </div>
 
+      {/* Modal for Adding Job Details */}
       {showModal && (
         <div className="modal">
           <div className="modal-content">
@@ -131,6 +173,7 @@ export default function KanbanBoard() {
             <label>Upload photo URL</label>
             <input type="text" name="image" value={jobDetails.image} onChange={handleImageInputChange} />
 
+            {/* Employee Input Section */}
             <label>Enter Workers in this project</label>
             <div className="employee-input">
               <input
@@ -151,6 +194,20 @@ export default function KanbanBoard() {
                   title={employee.name}
                 />
               ))}
+            </div>
+
+            {/* Drag-and-Drop Area */}
+            <div
+              className={`drag-drop-area ${dragOver ? 'drag-over' : ''}`}
+              onDrop={handleDrop}
+              onDragOver={handleDragOver}
+              onDragLeave={handleDragLeave}
+            >
+              {jobDetails.image ? (
+                <img src={jobDetails.image} alt="Dropped image" style={{ width: '100%', borderRadius: '8px' }} />
+              ) : (
+                <p>Drag and drop an image here or click to select</p>
+              )}
             </div>
 
             <button onClick={handleSubmit}>Save Job</button>
