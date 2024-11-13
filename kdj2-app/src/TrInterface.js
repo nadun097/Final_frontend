@@ -73,18 +73,18 @@ export default function KanbanBoard() {
     }
   };
 
-  // Drag over event handler
+ 
   const handleDragOver = (e) => {
     e.preventDefault();
     setDragOver(true);
   };
 
-  // Drag leave event handler
+
   const handleDragLeave = () => {
     setDragOver(false);
   };
 
-  // Save the job and add it to the column
+  
   const handleSubmit = () => {
     const newCard = {
       ...jobDetails,
@@ -98,7 +98,7 @@ export default function KanbanBoard() {
     setJobDetails({ title: '', description: '', image: '', employees: [] });
   };
 
-  // Cancel and reset job details form
+
   const handleCancel = () => {
     setShowModal(false);
     setJobDetails({ title: '', description: '', image: '', employees: [] });
