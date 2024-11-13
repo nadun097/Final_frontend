@@ -21,19 +21,18 @@ export default function KanbanBoard() {
   const [selectedColumn, setSelectedColumn] = useState(null);
   const [dragOver, setDragOver] = useState(false);
 
-  // Function to add a new job in the selected column
   const handleAddJob = (columnIndex) => {
     setSelectedColumn(columnIndex);
     setShowModal(true);
   };
 
-  // Handle input changes in job details form
+  
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setJobDetails((prevDetails) => ({ ...prevDetails, [name]: value }));
   };
 
-  // Check if entered image URL is valid
+  
   const handleImageInputChange = (e) => {
     const { value } = e.target;
     const isValidURL = value.match(/\.(jpeg|jpg|gif|png)$/) != null;
@@ -43,7 +42,7 @@ export default function KanbanBoard() {
     }));
   };
 
-  // Add an employee to the job
+
   const handleAddEmployee = () => {
     if (employeeName.trim() === '') return;
     setJobDetails((prevDetails) => ({
@@ -53,7 +52,7 @@ export default function KanbanBoard() {
     setEmployeeName('');
   };
 
-  // Handle drop event for drag-and-drop image upload
+ 
   const handleDrop = (e) => {
     e.preventDefault();
     setDragOver(false);
