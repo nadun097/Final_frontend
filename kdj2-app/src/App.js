@@ -18,7 +18,7 @@ function App() {
           <Route path="/home" element={<Home />} />
           <Route path="/project" element={<TrInterface />} />
           <Route path="/invoice" element={<Invoice />} />
-          <Route path="/Report" element={<Invoice />} />
+          <Route path="/Report" element={<Report />} />
           
         </Routes>
       </div>
