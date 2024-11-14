@@ -1,16 +1,35 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom"; 
+import { useNavigate } from "react-router-dom";
 import imageSrc from "../assets/werfdew.jpg.png";
 import "./Header.css";
 
 export default function Header() {
   const [activeItem, setActiveItem] = useState("HOME");
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
 
   const handleClick = (item) => {
     setActiveItem(item);
-    if (item === "PROJECTS ▼") {
-      navigate("/about");
+    switch (item) {
+      case "HOME ▼":
+        navigate("/home");
+        break;
+      case "PROJECTS ▼":
+        navigate("/project");
+        break;
+      case "INVOICE ▼":
+        navigate("/invoice");
+        break;
+      case "REPORTS ▼":
+        navigate("/reports");
+        break;
+      case "ADD CLIENTS ▼":
+        navigate("/addClients");
+        break;
+      case "ADD AMC ▼":
+        navigate("/addAmc");
+        break;
+      default:
+        break;
     }
   };
 
@@ -38,4 +57,3 @@ export default function Header() {
     </header>
   );
 }
-

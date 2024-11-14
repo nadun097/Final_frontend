@@ -13,7 +13,7 @@ function App() {
         <Header />
         <Routes>
           <Route exact path="/" element={<TrInterface />} />
-          <Route path="/about" element={<About />} />
+          <Route path="/project" element={<TrInterface />} />
         </Routes>
       </div>
     </Router>
