@@ -9,27 +9,27 @@ export default function Header() {
 
   const handleClick = (item) => {
     setActiveItem(item);
-    switch (item) {
-      case "HOME ▼":
-        navigate("/home");
-        break;
-      case "PROJECTS ▼":
-        navigate("/project");
-        break;
-      case "INVOICE ▼":
-        navigate("/invoice");
-        break;
-      case "REPORTS ▼":
-        navigate("/reports");
-        break;
-      case "ADD CLIENTS ▼":
-        navigate("/addClients");
-        break;
-      case "ADD AMC ▼":
-        navigate("/addAmc");
-        break;
-      default:
-        break;
+  switch (item) {
+    case "HOME ▼":
+      navigate("/home");
+      break;
+    case "PROJECTS ▼":
+      navigate("/project");
+      break;
+    case "INVOICE ▼":
+      navigate("/invoice");
+      break;
+    case "REPORTS ▼":
+      navigate("/report");
+      break;
+    case "ADD CLIENTS ▼":
+      navigate("/addClients");
+      break;
+    case "ADD AMC ▼":
+      navigate("/addAmc");
+      break;
+    default:
+      break;
     }
   };
 

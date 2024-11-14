@@ -1,11 +1,12 @@
-
 import React from "react";
 import "./App.css";
-import Header from "./component/Header.js";
-import Report from "./NavPages/Report.js";
-import KanbanBoardList from "./NavPages/KanbanBoardList.js";
-import Home from "./NavPages/Home.js";
-import Invoice from "./NavPages/Invoice.js";
+import Header from "./component/Header";
+import Report from "./NavPages/Report";
+import KanbanBoardList from "./NavPages/KanbanBoardList";
+import Home from "./NavPages/Home";
+import AddClient from "./NavPages/AddClient";
+import Invoice from "./NavPages/Invoice";
+import AddAMC from "./NavPages/AddAMC";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 function App() {
@@ -18,8 +19,9 @@ function App() {
           <Route path="/home" element={<Home />} />
           <Route path="/project" element={<KanbanBoardList />} />
           <Route path="/invoice" element={<Invoice />} />
-          <Route path="/Report" element={<Report />} />
-          
+          <Route path="/report" element={<Report />} />
+          <Route path="/addClients" element={<AddClient />} />
+          <Route path="/addAmc" element={<AddAMC />} />
         </Routes>
       </div>
     </Router>

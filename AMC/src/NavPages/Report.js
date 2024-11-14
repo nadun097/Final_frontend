@@ -1,11 +1,9 @@
 import React from "react";
 
-
-export default function About() {
+export default function Report() {
   return (
     <div>
-      <h4>report</h4>
-      
+      <h4>Report</h4>
     </div>
   );
 }

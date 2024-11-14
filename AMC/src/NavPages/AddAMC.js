@@ -1,9 +1,9 @@
 import React from "react";
 
-export default function Invoice() {
+export default function AddAmc() {
   return (
     <div>
-      <h4>Invoice</h4>
+      <h4>Add AMC</h4>
     </div>
   );
 }

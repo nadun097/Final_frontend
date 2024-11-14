@@ -23,11 +23,11 @@
   font-size: 1.7em;
 }
 
-/* Adjusting title spacing */
+
 .kanban-column h2 {
-  margin: 4px 0; /* Adjusts top and bottom margin */
-  padding: 2px 0; /* Adjusts top and bottom padding */
-  font-size: 1.5em; /* Optional: adjust font size if needed */
+  margin: 4px 0; 
+  padding: 2px 0; 
+  font-size: 1.5em; 
 }
 
 .kanban-card {
