@@ -8,12 +8,13 @@ import AddClient from "./NavPages/AddClient";
 import Invoice from "./NavPages/Invoice";
 import AddAMC from "./NavPages/AddAMC";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import JobDetails from './JobDetails';
 
 function App() {
   return (
     <Router>
       <div className="App">
-        <Header />
+        {/* <Header />
         <Routes>
           <Route exact path="/" element={<Home />} />
           <Route path="/home" element={<Home />} />
@@ -22,8 +23,13 @@ function App() {
           <Route path="/report" element={<Report />} />
           <Route path="/addClients" element={<AddClient />} />
           <Route path="/addAmc" element={<AddAMC />} />
-        </Routes>
+        </Routes> */}
+
+
+      <JobDetails />
+   
       </div>
+      
     </Router>
   );
 }
