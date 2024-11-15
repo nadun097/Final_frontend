@@ -15,7 +15,10 @@ export default function JobDetails() {
     { name: 'Alice Brown', avatar: 'https://via.placeholder.com/30' },
     { name: 'Mark Davis', avatar: 'https://via.placeholder.com/30' }, // Extra member
   ];
-
+  const [comments, setComments] = useState([
+    { name: 'Z. Mariam', time: 'Today at 11:32 AM', text: 'Comment content goes here...', avatar: 'https://via.placeholder.com/30' },
+    { name: 'Shafa', time: 'Today at 11:45 AM', text: 'Another comment here...', avatar: 'https://via.placeholder.com/30' },
+  ]);
   return (
     <div>
       {/* Background Image */}
@@ -109,7 +112,8 @@ export default function JobDetails() {
             placeholder="Add your comment"
             className="comment-textarea"
           ></textarea>
-          <button>Add Comment</button>
+          <div>
+          <button>Add Comment</button></div>
 
           <div className="comment">
             <p>
