@@ -18,37 +18,46 @@ export default function JobDetails() {
 
   return (
     <div>
+      {/* Background Image */}
       <img src={wallpaper} alt="Wallpaper" className="image" />
 
+      {/* Main Container */}
       <div className="job-details-container">
-        {/* Header Section */}
+        
         <div className="header">
           <h1>Title</h1>
-          <div className="listDetails">
-            <h4>in list current project</h4>
-          </div>
+         
+        </div>
+        <div className="inList">
+         
+          <h4>In List: Current Project</h4>
+        </div>
 
-          {/* Members Section */}
-          <div className="members">
-            {members.slice(0, 3).map((member, index) => (
-              <img
-                key={index}
-                src={member.avatar}
-                alt={member.name}
-                className="member-avatar"
-                title={member.name}
-              />
-            ))}
-            {members.length > 3 && (
-              <span className="extra-members">+{members.length - 3}</span>
-            )}
-          </div>
+        <div className="members-hedding">
+        <h4>Members</h4> </div>
+        {/* Members Section */}
+        <div className="members">
+          {members.slice(0, 3).map((member, index) => (
+            <img
+              key={index}
+              src={member.avatar}
+              alt={member.name}
+              className="member-avatar"
+              title={member.name}
+            />
+          ))}
+          {members.length > 3 && (
+            <span className="extra-members">+{members.length - 3}</span>
+          )}
         </div>
 
         {/* Description Section */}
         <div className="description-section">
           <h3>Description</h3>
-          <textarea placeholder="Enter description here"></textarea>
+          <textarea
+            placeholder="Enter description here"
+            className="description-textarea"
+          ></textarea>
         </div>
 
         {/* Sidebar Actions */}
@@ -88,21 +97,30 @@ export default function JobDetails() {
             <img src="https://via.placeholder.com/150" alt="Asset 2" />
             <img src="https://via.placeholder.com/150" alt="Asset 3" />
           </div>
-          <a href="#!" className="open-folder-link">Open folder in Google Drive</a>
+          <a href="#!" className="open-folder-link">
+            Open folder in Google Drive
+          </a>
         </div>
 
         {/* Comment Section */}
         <div className="comment-section">
           <h3>Add Comment</h3>
-          <textarea placeholder="Add your comment"></textarea>
+          <textarea
+            placeholder="Add your comment"
+            className="comment-textarea"
+          ></textarea>
           <button>Add Comment</button>
 
           <div className="comment">
-            <p><strong>Z. Mariam</strong> <span>Today at 11:32 AM</span></p>
+            <p>
+              <strong>Z. Mariam</strong> <span>Today at 11:32 AM</span>
+            </p>
             <p>Comment content goes here...</p>
           </div>
           <div className="comment">
-            <p><strong>Shafa</strong> <span>Today at 11:45 AM</span></p>
+            <p>
+              <strong>Shafa</strong> <span>Today at 11:45 AM</span>
+            </p>
             <p>Another comment here...</p>
           </div>
         </div>

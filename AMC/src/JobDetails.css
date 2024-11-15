@@ -8,6 +8,7 @@
   margin: 0;
 }
 
+
 /* Members section styling */
 .members {
   display: flex;
@@ -19,6 +20,13 @@
   border-radius: 50%;
   margin-left: 5px;
 }
+.inList {
+  text-align: left; /* Aligns text to the left */
+  margin-left: 0;
+  margin-top: -15px; /* Ensures no unnecessary margin */
+  padding-left: 0; /* Optional: Add padding for spacing */
+}
+
 
 /* Sidebar actions styling */
 .sidebar-actions {
@@ -38,6 +46,7 @@
 }
 
 .sidebar-actions button {
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   padding: 10px;
   background-color: #f4f4f4;
   border: 1px solid #ccc;
@@ -61,6 +70,7 @@
 
 /* Asset section styling */
 .asset-section {
+  text-align: left;
   margin-top: 20px;
 }
 
@@ -71,15 +81,16 @@
 }
 
 .asset-thumbnails img {
-  width: 100px;
-  height: 80px;
-  border-radius: 8px;
+  width: 200px;
+  height:160px;
+  border-radius: 4px;
   border: 1px solid #ccc;
+  margin-top: 10px;
 }
 
 .open-folder-link {
   color: #007bff;
-  text-decoration: none;
+ 
   margin-top: 10px;
   display: block;
 }
@@ -92,8 +103,9 @@
 }
 
 .description-section {
+  
   margin-top: 20px;
-  margin-left: 15px; /* Moves the section to the left-hand side */
+  margin-left: 0; /* Moves the section to the left-hand side */
   text-align: left; /* Ensures text aligns to the left */
 }
 
@@ -158,18 +170,13 @@ font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   
  
  
-  padding: 15px ;
+  padding: 0 ;
   background: linear-gradient(90deg, #ffffff, #ffffff, #ffffff);
   color: #2c2c2c;
   font-family: Arial, sans-serif;
   font-weight: bold;
 }
-.listDetails {
-  color: #747474;
-  text-align: left; /* Aligns text to the left */
-  margin-left: 15px; /* Optional: Adds some spacing from the left edge */
-  margin-top: -30px;
-}
+
 .members {
   display: flex;
   align-items: center;
@@ -186,7 +193,13 @@ font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 
 .extra-members {
   font-size: 16px;
-  color: #007bff;
-  font-weight: bold;
-  margin-left: 10px;
+  color: #8f8f8f;
+  font-weight:lighter;
+  margin-right: 10px;
+}
+.members-hedding{
+text-align: left;
+color: #8f8f8f;
+font-weight:lighter;
+
 }
