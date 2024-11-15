@@ -9,32 +9,56 @@ export default function JobDetails() {
     setOpenDropdown(openDropdown === dropdown ? null : dropdown);
   };
 
+  const members = [
+    { name: 'John Doe', avatar: 'https://via.placeholder.com/30' },
+    { name: 'Jane Smith', avatar: 'https://via.placeholder.com/30' },
+    { name: 'Alice Brown', avatar: 'https://via.placeholder.com/30' },
+    { name: 'Mark Davis', avatar: 'https://via.placeholder.com/30' }, // Extra member
+  ];
+
   return (
     <div>
-     
       <img src={wallpaper} alt="Wallpaper" className="image" />
 
-     
       <div className="job-details-container">
-        
         {/* Header Section */}
         <div className="header">
           <h1>Title</h1>
+          <div className="listDetails">
+            <h4>in list current project</h4>
+          </div>
+
+          {/* Members Section */}
+          <div className="members">
+            {members.slice(0, 3).map((member, index) => (
+              <img
+                key={index}
+                src={member.avatar}
+                alt={member.name}
+                className="member-avatar"
+                title={member.name}
+              />
+            ))}
+            {members.length > 3 && (
+              <span className="extra-members">+{members.length - 3}</span>
+            )}
+          </div>
         </div>
-        <div className="listDetails">
-          <h4>in list current project</h4>
+
+        {/* Description Section */}
+        <div className="description-section">
+          <h3>Description</h3>
+          <textarea placeholder="Enter description here"></textarea>
         </div>
 
         {/* Sidebar Actions */}
         <div className="sidebar-actions">
-  <h2>Add</h2>
-  <button onClick={() => toggleDropdown('members')}>Members</button>
+          <h2>Add</h2>
+          <button onClick={() => toggleDropdown('members')}>Members</button>
           {openDropdown === 'members' && (
             <div className="dropdown-content">Member details go here.</div>
           )}
 
-
-          
           <button onClick={() => toggleDropdown('labels')}>Labels</button>
           {openDropdown === 'labels' && (
             <div className="dropdown-content">Label details go here.</div>
@@ -65,12 +89,6 @@ export default function JobDetails() {
             <img src="https://via.placeholder.com/150" alt="Asset 3" />
           </div>
           <a href="#!" className="open-folder-link">Open folder in Google Drive</a>
-        </div>
-
-        {/* Description Section */}
-        <div className="description-section">
-          <h3>Description</h3>
-          <textarea placeholder="Enter description here"></textarea>
         </div>
 
         {/* Comment Section */}
