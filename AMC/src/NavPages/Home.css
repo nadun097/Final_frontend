@@ -1,0 +1,141 @@
+
+    .dashboard {
+        padding: 20px;
+      }
+      
+      .dashboard-title {
+        font-size: 30px;
+        text-align: left;
+        font-weight: bold;
+        margin-bottom: px;
+        color: #333333;
+      }
+      
+      .dashboard-container {
+        display: flex;
+        gap: 20px;
+        width: 100%;
+        align-items: stretch;
+      }
+      
+      /* Left Column: Metrics Section */
+      .metrics-section {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+      
+      .total-revenue-card {
+        background-color: #f7f7f9;
+        padding: 20px;
+        border-radius: 8px;
+        text-align: center;
+        border: 2px solid #ddb4f9; /* Green border */
+      }
+      
+      .bottom-row {
+        display: flex;
+        gap: 20px;
+        width: 100%;
+      }
+      
+      .metric-card {
+        flex: 1;
+        background-color: #f7f7f9;
+        padding: 20px;
+        border-radius: 8px;
+        text-align: center;
+        border: 2px solid #ddb4f9; /* Blue border */
+      }
+      .metric-total{
+        font-size:40px ;
+      }
+
+      .metric-active{
+        font-size: 40px;
+      }
+      .metric-title{
+
+        font-size: 15px;
+      }
+      .metric-users{
+        font-size: 40px;
+
+      }
+      
+      .reminder-card {
+       flex: 1;
+        background-color: #f7f7f9;
+        padding: 20px;
+        border-radius: 8px;
+        text-align: center;
+        border: 2px solid #ddb4f9;/* Gray border */
+      }
+
+      .bottom-row {
+        display: flex;
+        gap: 20px;
+        width: 100%; /* Make sure it takes full width of the parent */
+      }
+      
+      .chart-placeholder {
+        background-color: #e0e0e0;
+        height: 500px;
+        flex-grow: 1;
+        border-radius: 4px;
+        margin-top: 10px;
+      }
+      
+      .reminder-list {
+        text-align: left;
+      }
+      
+      /* Right Column: Data and Chart Sections */
+      .data-chart-section {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        align-self: stretch;
+      }
+      
+      .data-overview, .chart-section {
+        background-color: #f7f7f9;
+        padding: 20px;
+        border-radius: 8px;
+        border: 2px solid #ddb4f9;
+      }
+      
+      .data-placeholder, .chart-placeholder {
+        background-color: #e0e0e0;
+        height: 150px;
+        border-radius: 4px;
+        margin-top: 10px;
+      }
+      .data-list {
+        list-style-type: none; /* Removes default bullets */
+        padding: 0; /* Removes default padding */
+        margin-top: 10px; /* Adds space between the heading and the list */
+      }
+      
+      .data-list li {
+        background-color: #ffffff; /* White background for items */
+        padding: 10px 15px; /* Spacing inside each item */
+        margin-bottom: 10px; /* Space between items */
+        border-radius: 4px; /* Rounded corners */
+        border: 1px solid #ddb4f9; /* Border to match theme */
+        font-size: 16px; /* Adjust font size */
+        color: #333333; /* Text color */
+      }
+
+.chart-section {
+  background-color: #f7f7f9;
+  padding: 20px;
+  border-radius: 8px;
+  border: 2px solid #ddb4f9;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+      
