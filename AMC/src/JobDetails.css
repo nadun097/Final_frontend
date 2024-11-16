@@ -10,7 +10,11 @@ body {
 
 /* Header styling */
 .header h1 {
-  margin: 0;
+  margin: 0; /* Reset default margins */
+  font-size: 24px; /* Adjust size if needed */
+  line-height: 1.5; /* Ensure proper spacing */
+margin-left: -20px;
+
 }
 
 /* Members section styling */
@@ -28,7 +32,7 @@ body {
 .inList {
   text-align: left; /* Aligns text to the left */
   margin-left: 0;
-  margin-top: -15px; /* Ensures no unnecessary margin */
+  margin-top: -25px; /* Ensures no unnecessary margin */
   padding-left: 0; /* Optional: Add padding for spacing */
 }
 
@@ -36,8 +40,9 @@ body {
 .sidebar-actions {
   position: absolute;
   top: 26vh;
-  right: 10%;
-  width: 250px;
+ 
+  right: 10%; /* Adjusted to leave more space on the right */
+  width: 15%;
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -157,8 +162,8 @@ body {
 .job-details-container {
   display: flex;
   flex-direction: column;
-  padding-left: 10%;
-  padding-right: 10%;
+  padding-left: 13%;
+  padding-right: 13%;
   font-family: Arial, sans-serif;
   background-color: #f0f0f0; /* Light gray background for the entire container */
 }
@@ -172,12 +177,13 @@ body {
 }
 
 .header {
-  padding: 0;
+  
   background: linear-gradient(0deg, #f0f0f0, #f0f0f0, #f0f0f0);
   color: #2c2c2c;
   font-family: Arial, sans-serif;
   font-weight: bold;
 }
+
 
 .members {
   display: flex;
@@ -227,4 +233,20 @@ body {
   margin-bottom: 15px;
   padding: 10px;
   border-bottom: 1px solid #ddd;
+}
+.icon {
+text-align: left;
+  width: 24px;
+  height: 24px;
+  margin-left: -35px;
+  margin-top: 20px;
+}
+.iconAlingn{
+  display: flex;
+}
+
+.icon2{
+  margin-bottom: -5px;
+  width: 24px;
+  height: 24px;
 }
