@@ -16,31 +16,36 @@
 }
 
 .kanban-column {
-  background-color: #f0f0f0;
-  flex: 1; /* Allow columns to shrink and grow dynamically */
-  min-width: 280px; /* Minimum width for each column */
-  max-width: 350px; /* Maximum width to ensure consistent layout */
+  flex: 1;
+  min-width: 280px;
+  max-width: 350px;
   padding: 10px;
   border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   text-align: left;
   margin: 5px;
   font-size: 1.7em;
+  max-height: auto;
+  position: relative; /* Important for z-index to work */
 }
 
 .kanban-column h3 {
-  margin: 4px 0;
   padding: 2px 0;
-  font-size: 1.5em;
-  text-align: center;
+  font-size: 1em;
+  text-align: left; /* Removed the second text-align property */
+  margin-bottom: 3vh;
+ border-radius: 8px;
+ padding: 15px;
+  
+  background-color: rgb(240, 240, 240); /* Added background color */
 }
+
 
 .kanban-card {
   background-color: #ffffff;
-  border-radius: 4px;
+  border-radius: 8px;
   margin-bottom: 16px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
+  
 }
 
 .card-image img {
@@ -49,103 +54,80 @@
   object-fit: cover;
 }
 
+.kanban-board {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 16px;
+  justify-content: center;
+}
+
+.kanban-card {
+  background-color: #ffffff;
+  padding: 5px;
+  margin-top: -27px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  border-radius: 8px;
+  /* Black border on left and right sides */
+  border-left: 5px solid rgb(240, 240, 240);
+  border-right: 5px solid rgb(240, 240, 240);
+  border-top: 10px solid rgb(240, 240, 240);
+  border-bottom: 20px solid rgb(240, 240, 240); /* Corrected this line */
+  position:static ;
+  
+}
+
+
+.card-image img {
+  width: 100%;
+  border-radius: 8px;
+  z-index: 1;
+}
+
 .card-content {
   padding: 8px;
 }
 
-.add-card {
-  width: 100%;
-  padding: 8px;
-  background-color: #dadada;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  color: #555;
-  text-align: center;
+.card-title {
+  font-size: 1.2em;
+  font-weight: bold;
+  z-index: 1;
 }
 
-.add-card:hover {
-  background-color: #d0d0d0;
+.card-description {
+  font-size: 0.9em;
+  color: #666;
+  
 }
 
-.add-list-container {
-  position: fixed; /* Ensure it's always visible */
-  top: 16px;
-  left: 50%;
-  transform: translateX(-50%);
+.card-footer {
   display: flex;
-  gap: 8px;
-  flex-wrap: wrap; /* Wrap input and button if space is insufficient */
+  align-items: center;
+  margin-top: 8px;
 }
 
-.add-list-container input,
-.add-list-container button {
-  flex: 1;
-  min-width: 100px; /* Ensure they don’t shrink too much */
+.employee-avatars {
+  display: flex;
+  gap: 4px;
 }
 
-.modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+.employee-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.extra-employees {
+  font-size: 0.8em;
+  background-color: #ddd;
+  color: #333;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(0, 0, 0, 0.5);
-  padding: 16px; /* Ensure modal content is spaced on smaller screens */
-}
-
-.modal-content {
-  background: #ffffff;
-  padding: 20px;
-  border-radius: 8px;
-  width: 90%; /* Use a percentage for smaller screens */
-  max-width: 400px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-/* Media Queries for Specific Screen Sizes */
-
-/* For tablets */
-@media (max-width: 768px) {
-  .kanban-container {
-    padding: 8px;
-  }
-
-  .kanban-column {
-    min-width: 240px; /* Narrower columns for tablets */
-  }
-
-  .kanban-board {
-    gap: 8px; /* Reduce gap for compact layouts */
-  }
-
-  .add-list-container {
-    gap: 4px;
-  }
-}
-
-/* For mobile devices */
-@media (max-width: 480px) {
-  .kanban-board {
-    flex-direction: column; /* Stack columns vertically */
-    align-items: stretch; /* Make columns take full width */
-  }
-
-  .kanban-column {
-    width: 100%; /* Full width for each column */
-    margin: 8px 0;
-  }
-
-  .add-list-container {
-    flex-direction: column; /* Stack input and button */
-    gap: 4px;
-  }
-
-  .modal-content {
-    width: 95%; /* Maximize space on smaller screens */
-    padding: 10px; /* Compact padding for modal */
-  }
 }
