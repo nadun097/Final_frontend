@@ -11,9 +11,9 @@ body {
 /* Header styling */
 .header h1 {
   margin: 0; /* Reset default margins */
-  font-size: 24px; /* Adjust size if needed */
+  font-size: 35px; /* Adjust size if needed */
   line-height: 1.5; /* Ensure proper spacing */
-margin-left: -20px;
+
 
 }
 
@@ -236,9 +236,9 @@ margin-left: -20px;
 }
 .icon {
 text-align: left;
-  width: 24px;
-  height: 24px;
-  margin-left: -35px;
+  width: 30px;
+  height: 30px;
+  margin-left: -40px;
   margin-top: 20px;
 }
 .iconAlingn{

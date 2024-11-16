@@ -14,7 +14,7 @@ function App() {
   return (
     <Router>
       <div className="App">
-         <Header />
+        {/* <Header />
         <Routes>
           <Route exact path="/" element={<Home />} />
           <Route path="/home" element={<Home />} />
@@ -23,10 +23,10 @@ function App() {
           <Route path="/report" element={<Report />} />
           <Route path="/addClients" element={<AddClient />} />
           <Route path="/addAmc" element={<AddAMC />} />
-        </Routes> 
+        </Routes> */}
 
-{/* 
-      <JobDetails /> */}
+
+      <JobDetails />
    
       </div>
       
