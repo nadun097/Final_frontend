@@ -8,14 +8,13 @@ export default function KanbanBoard() {
     { title: 'Accomplished', cards: [] },
     { title: 'Expired', cards: [] },
   ]);
-  
   const [newColumnTitle, setNewColumnTitle] = useState('');
   const [showModal, setShowModal] = useState(false);
   const [jobDetails, setJobDetails] = useState({
     title: '',
     description: '',
     image: '',
-    employees: []
+    employees: [],
   });
   const [employeeName, setEmployeeName] = useState('');
   const [selectedColumn, setSelectedColumn] = useState(null);
@@ -26,40 +25,35 @@ export default function KanbanBoard() {
     setShowModal(true);
   };
 
-  
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setJobDetails((prevDetails) => ({ ...prevDetails, [name]: value }));
   };
 
-  
   const handleImageInputChange = (e) => {
     const { value } = e.target;
-    const isValidURL = value.match(/\.(jpeg|jpg|gif|png)$/) != null;
+    const isValidURL = value.match(/\.(jpeg|jpg|gif|png)$/i);
     setJobDetails((prevDetails) => ({
       ...prevDetails,
       image: isValidURL ? value : '',
     }));
   };
 
-
   const handleAddEmployee = () => {
     if (employeeName.trim() === '') return;
     setJobDetails((prevDetails) => ({
       ...prevDetails,
-      employees: [...prevDetails.employees, { name: employeeName, avatar: 'https://via.placeholder.com/30' }]
+      employees: [...prevDetails.employees, { name: employeeName, avatar: 'https://via.placeholder.com/30' }],
     }));
     setEmployeeName('');
   };
 
- 
   const handleDrop = (e) => {
     e.preventDefault();
     setDragOver(false);
 
     if (e.dataTransfer.files && e.dataTransfer.files[0]) {
       const file = e.dataTransfer.files[0];
-      
       if (file.type.startsWith('image/')) {
         const reader = new FileReader();
         reader.onload = () => {
@@ -73,18 +67,15 @@ export default function KanbanBoard() {
     }
   };
 
- 
   const handleDragOver = (e) => {
     e.preventDefault();
     setDragOver(true);
   };
 
-
   const handleDragLeave = () => {
     setDragOver(false);
   };
 
-  
   const handleSubmit = () => {
     const newCard = {
       ...jobDetails,
@@ -98,7 +89,6 @@ export default function KanbanBoard() {
     setJobDetails({ title: '', description: '', image: '', employees: [] });
   };
 
-
   const handleCancel = () => {
     setShowModal(false);
     setJobDetails({ title: '', description: '', image: '', employees: [] });
@@ -107,21 +97,9 @@ export default function KanbanBoard() {
 
   return (
     <div className="kanban-container">
-      {/* Add List Container */}
-      <div className="add-list-container">
-        <input
-          type="text"
-          value={newColumnTitle}
-          onChange={(e) => setNewColumnTitle(e.target.value)}
-          placeholder="Enter list title"
-        />
-        <button onClick={() => {
-          setColumns([...columns, { title: newColumnTitle, cards: [] }]);
-          setNewColumnTitle('');
-        }}>Add List</button>
-      </div>
-
-      {/* Kanban Board with Columns and Cards */}
+  
+       {/* Kanban Board with Columns and Cards */}
+       
       <div className="kanban-board">
         {columns.map((column, index) => (
           <div key={index} className="kanban-column">
@@ -138,24 +116,24 @@ export default function KanbanBoard() {
                 <div className="card-footer">
                   <div className="employee-avatars">
                     {card.employees.slice(0, 3).map((employee, empIndex) => (
-                      <img 
-                        key={empIndex} 
-                        src={employee.avatar} 
-                        alt={employee.name} 
-                        className="employee-avatar" 
+                      <img
+                        key={empIndex}
+                        src={employee.avatar}
+                        alt={employee.name}
+                        className="employee-avatar"
                         title={employee.name}
                       />
                     ))}
                     {card.employees.length > 3 && (
-                      <div className="extra-employees">
-                        +{card.employees.length - 3}
-                      </div>
+                      <div className="extra-employees">+{card.employees.length - 3}</div>
                     )}
                   </div>
                 </div>
               </div>
             ))}
-            <button className="add-card" onClick={() => handleAddJob(index)}>+ Add a job</button>
+            <button className="add-card" onClick={() => handleAddJob(index)}>
+              + Add a job
+            </button>
           </div>
         ))}
       </div>

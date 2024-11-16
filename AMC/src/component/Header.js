@@ -34,7 +34,7 @@ export default function Header() {
   };
 
   return (
-    <header className="header">
+    <header className="header-nav">
       <img src={imageSrc} alt="nexasoft logo" className="logo" />
       <nav>
         <ul className="nav-page">
