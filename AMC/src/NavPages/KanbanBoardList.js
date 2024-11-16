@@ -8,23 +8,24 @@ export default function KanbanBoard() {
       cards: [
         {
           title: "Task 5", // Task 5 is now at the top
-          description: "This is the first pending task.This is the second pending task.",
-          
+          description: "This is the first pending task. This is the second pending task.",
           type: "low", // Define a type for dynamic styling
           employees: [
             { name: "Alice", avatar: "https://via.placeholder.com/32" },
             { name: "Bob", avatar: "https://via.placeholder.com/32" },
           ],
+          image: "https://via.placeholder.com/150", // This card will have an image
         },
         {
           title: "Task 1", // Task 1 follows Task 5
-          description: "This is the second pending task ",
-          image: "https://via.placeholder.com/150",
+          description: "This is the second pending task",
           type: "low", // Define a type for dynamic styling
           employees: [
             { name: "Alice", avatar: "https://via.placeholder.com/32" },
-            { name: "Dave", avatar: "https://via.placeholder.com/32" }, { name: "Dave", avatar: "https://via.placeholder.com/32" },
+            { name: "Dave", avatar: "https://via.placeholder.com/32" },
+            { name: "Dave", avatar: "https://via.placeholder.com/32" },
           ],
+          image: null, // This card will not have an image
         },
       ],
     },
@@ -34,12 +35,11 @@ export default function KanbanBoard() {
         {
           title: "Task 2",
           description: "This task is currently in progress.",
-          image: "https://via.placeholder.com/150",
           type: "medium", // Define a type for dynamic styling
           employees: [
             { name: "Charlie", avatar: "https://via.placeholder.com/32" },
-           
           ],
+          image: "https://via.placeholder.com/150", // This card will have an image
         },
       ],
     },
@@ -49,12 +49,13 @@ export default function KanbanBoard() {
         {
           title: "Task 3",
           description: "This task has been completed.",
-          image: "https://via.placeholder.com/150",
           type: "high", // Define a type for dynamic styling
           employees: [
             { name: "Eve", avatar: "https://via.placeholder.com/32" },
-            { name: "Frank", avatar: "https://via.placeholder.com/32" }, { name: "Dave", avatar: "https://via.placeholder.com/32" },
+            { name: "Frank", avatar: "https://via.placeholder.com/32" },
+            { name: "Dave", avatar: "https://via.placeholder.com/32" },
           ],
+          image: null, // This card will not have an image
         },
       ],
     },
@@ -64,12 +65,12 @@ export default function KanbanBoard() {
         {
           title: "Task 4",
           description: "This task is expired.",
-          image: "https://via.placeholder.com/150",
           type: "expired", // Define a type for dynamic styling
           employees: [
             { name: "Grace", avatar: "https://via.placeholder.com/32" },
             { name: "Heidi", avatar: "https://via.placeholder.com/32" },
           ],
+          image: "https://via.placeholder.com/150", // This card will have an image
         },
       ],
     },
@@ -86,12 +87,14 @@ export default function KanbanBoard() {
                 key={cardIndex}
                 className={`kanban-card ${card.type}-card`} // Dynamic class based on type
               >
-                <div className="card-image">
-                  <img
-                    src={card.image || "https://via.placeholder.com/150"}
-                    alt={card.title}
-                  />
-                </div>
+                {card.image && ( // Conditionally render the image section
+                  <div className="card-image">
+                    <img
+                      src={card.image}
+                      alt={card.title}
+                    />
+                  </div>
+                )}
                 <div className="card-content">
                   <div className="card-title">{card.title}</div>
                   <div className="card-description">{card.description}</div>
