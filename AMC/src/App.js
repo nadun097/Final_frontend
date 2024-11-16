@@ -14,8 +14,8 @@ function App() {
   return (
     <Router>
       <div className="App">
-        {/* <Header />
-        <Routes>
+       <Header />
+         <Routes>
           <Route exact path="/" element={<Home />} />
           <Route path="/home" element={<Home />} />
           <Route path="/project" element={<KanbanBoardList />} />
@@ -23,10 +23,9 @@ function App() {
           <Route path="/report" element={<Report />} />
           <Route path="/addClients" element={<AddClient />} />
           <Route path="/addAmc" element={<AddAMC />} />
-        </Routes> */}
-
-
-      <JobDetails />
+        </Routes>  
+{/*  
+      <JobDetails />  */}
    
       </div>
       

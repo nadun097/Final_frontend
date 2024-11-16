@@ -1,6 +1,6 @@
 .kanban-container {
   padding: 16px;
-  background: linear-gradient(135deg, #ffa3f1, #9fb0ff);
+  background: linear-gradient(135deg, #ffd5b2, #c0cbff);
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -9,12 +9,17 @@
 
 .kanban-board {
   display: flex;
+  flex-wrap: wrap; /* Allow columns to wrap to the next row on smaller screens */
   gap: 16px;
+  margin-top: 60px;
+  justify-content: center; /* Center columns on smaller screens */
 }
 
 .kanban-column {
   background-color: #f0f0f0;
-  width: 350px;
+  flex: 1; /* Allow columns to shrink and grow dynamically */
+  min-width: 280px; /* Minimum width for each column */
+  max-width: 350px; /* Maximum width to ensure consistent layout */
   padding: 10px;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -23,11 +28,11 @@
   font-size: 1.7em;
 }
 
-
-.kanban-column h2 {
-  margin: 4px 0; 
-  padding: 2px 0; 
-  font-size: 1.5em; 
+.kanban-column h3 {
+  margin: 4px 0;
+  padding: 2px 0;
+  font-size: 1.5em;
+  text-align: center;
 }
 
 .kanban-card {
@@ -39,46 +44,13 @@
 }
 
 .card-image img {
-  width: 100%;
-  height: 120px;
+  width: 100%; /* Scale image to fit the card */
+  height: auto; /* Maintain aspect ratio */
   object-fit: cover;
 }
 
 .card-content {
   padding: 8px;
-}
-
-.card-title {
-  font-size: 1em;
-  font-weight: bold;
-  margin: 4px 0;
-  color: #333;
-}
-
-.card-description {
-  font-size: 0.7em;
-  color: #666;
-  margin-bottom: 8px;
-}
-
-.card-footer {
-  padding: 8px;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-}
-
-.employee-avatars {
-  display: flex;
-}
-
-.employee-avatar {
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  margin-right: 4px;
-  border: 2px solid #a5a5a5;
-  box-shadow: 0 2px 4px rgba(255, 254, 254, 0.2);
 }
 
 .add-card {
@@ -89,54 +61,27 @@
   border-radius: 4px;
   cursor: pointer;
   color: #555;
+  text-align: center;
 }
 
 .add-card:hover {
   background-color: #d0d0d0;
 }
 
-.kanban-container {
-  padding: 16px;
-  background: linear-gradient(135deg, #ffd5b2, #c0cbff);
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  position: relative;
-}
-
-/* Top right corner input and button for adding a new list */
 .add-list-container {
-  position: absolute;
+  position: fixed; /* Ensure it's always visible */
   top: 16px;
-  left: 30px;
+  left: 50%;
+  transform: translateX(-50%);
   display: flex;
   gap: 8px;
+  flex-wrap: wrap; /* Wrap input and button if space is insufficient */
 }
 
-.add-list-container input {
-  padding: 8px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-}
-
+.add-list-container input,
 .add-list-container button {
-  padding: 8px 12px;
-  background-color: #fc9738;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-.add-list-container button:hover {
-  background-color: #ffae62;
-}
-
-.kanban-board {
-  display: flex;
-  gap: 16px;
-  margin-top: 60px;
+  flex: 1;
+  min-width: 100px; /* Ensure they don’t shrink too much */
 }
 
 .modal {
@@ -149,90 +94,58 @@
   align-items: center;
   justify-content: center;
   background: rgba(0, 0, 0, 0.5);
+  padding: 16px; /* Ensure modal content is spaced on smaller screens */
 }
 
 .modal-content {
   background: #ffffff;
   padding: 20px;
   border-radius: 8px;
-  width: 300px;
+  width: 90%; /* Use a percentage for smaller screens */
+  max-width: 400px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-.modal-content h2 {
-  margin-top: 0;
+/* Media Queries for Specific Screen Sizes */
+
+/* For tablets */
+@media (max-width: 768px) {
+  .kanban-container {
+    padding: 8px;
+  }
+
+  .kanban-column {
+    min-width: 240px; /* Narrower columns for tablets */
+  }
+
+  .kanban-board {
+    gap: 8px; /* Reduce gap for compact layouts */
+  }
+
+  .add-list-container {
+    gap: 4px;
+  }
 }
 
-.employee-input {
-  display: flex;
-  gap: 8px;
-  margin-bottom: 8px;
-}
+/* For mobile devices */
+@media (max-width: 480px) {
+  .kanban-board {
+    flex-direction: column; /* Stack columns vertically */
+    align-items: stretch; /* Make columns take full width */
+  }
 
-.employee-input input {
-  flex: 1;
-  padding: 8px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-}
+  .kanban-column {
+    width: 100%; /* Full width for each column */
+    margin: 8px 0;
+  }
 
-.employee-input button {
-  padding: 8px 12px;
-  background-color: #6a0dad;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
+  .add-list-container {
+    flex-direction: column; /* Stack input and button */
+    gap: 4px;
+  }
 
-.employee-input button:hover {
-  background-color: #9033e7;
-}
-
-.extra-employees {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  background-color: #dddddd;
-  color: #333;
-  font-size: 0.8em;
-  font-weight: bold;
-  border: 2px solid #ffffff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  margin-left: 4px;
-}
-
-.drag-drop-area {
-  width: 100%;
-  height: 120px;
-  border: 2px dashed #c2c1c1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  border-radius: 8px;
-  margin: 16px 0;
-}
-
-.drag-drop-area.drag-over {
-  border-color: #6a0dad;
-  background-color: #f4e1ff;
-}
-
-.card-image img {
-  margin-top: 15px;
-  width: 340px;
-  height: 350px;
-  object-fit: cover;
-  border-radius: 10px;
-  margin-left: 5px;
-}
-
-.modal .drag-drop-area img {
-  width: 200px;
-  height: 300px;
-  border-radius: 8px;
+  .modal-content {
+    width: 95%; /* Maximize space on smaller screens */
+    padding: 10px; /* Compact padding for modal */
+  }
 }
