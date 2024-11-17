@@ -1,3 +1,4 @@
+
 .dashboard {
   padding: 20px;
 }
@@ -79,41 +80,41 @@
 
 /* Chart Placeholders with Unique Styles */
 .total-amc-chart {
-  background-image: url('C:\Users\User\Documents\GitHub\React-test-project\AMC\src\assets\firstGraph.png');
+ 
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
-  height: 500px;
+  height: 90px;
   border-radius: 4px;
   margin-top: 10px;
 }
 
 .active-amc-chart {
-  background-image: url('C:\Users\User\Documents\GitHub\React-test-project\AMC\src\assets\secondChart.png');
+ 
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
-  height: 500px;
+  height: 90px;
   border-radius: 4px;
   margin-top: 10px;
 }
 
 .total-users-chart {
-  background-image: url('C:\Users\User\Documents\GitHub\React-test-project\AMC\src\assets\lastGraph.png');
+  
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
-  height: 500px;
+  height: 90px;
   border-radius: 4px;
   margin-top: 10px;
 }
 
 .data-chart {
-  background-image: url('C:\Users\User\Documents\GitHub\React-test-project\AMC\src\assets\dataGraph.png');
+ 
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
-  height: 500px;
+  height: 90px;
   border-radius: 4px;
   margin-top: 10px;
 }
@@ -159,3 +160,4 @@
   flex-direction: column;
   flex-grow: 1;
 }
+
