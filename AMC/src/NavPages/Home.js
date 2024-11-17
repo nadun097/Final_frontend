@@ -20,13 +20,13 @@ import './Home.css';
               <div className="metric-card">
                 <h4>Total AMC</h4>
                 <p className="metric-total">1,137</p>
-                <div className="chart-placeholder"></div>
+                <div className="chart-placeholder total-amc-chart"></div>
               </div>
   
               <div className="metric-card">
                 <h4>Active AMC</h4>
                 <p className="metric-active">737</p>
-                <div className="chart-placeholder"></div>
+                <div className="chart-placeholder active-amc-chart"></div>
               </div>
             </div>
   
@@ -43,7 +43,7 @@ import './Home.css';
               <div className="metric-card">
                 <h4 className="metric-title">Total Users</h4>
                 <p className="metric-users">20K</p>
-                <div className="chart-placeholder"></div>
+                <div className="chart-placeholder total-users-chart"></div>
               </div>
             </div>
           </div>
@@ -63,7 +63,7 @@ import './Home.css';
   
             <div className="chart-section">
               <h4>Data Chart</h4>
-              <div className="chart-placeholder"></div>
+              <div className="chart-placeholder data-chart"></div>
             </div>
           </div>
         </div>
