@@ -53,12 +53,14 @@
 }
 
 .search-input {
+
   padding: 5px 10px;
   border-radius: 2px;
   border: none;
   outline: none;
   font-size: 14px;
   background-color: #f2e5ff;
+  margin-right: 1vw;
 }
 
 .icon {
@@ -78,4 +80,8 @@
 .settings-icon:hover,
 .profile-icon:hover {
   opacity: 0.8;
+}
+.icon-notification-icon{
+
+  margin-right: 1vw;
 }
