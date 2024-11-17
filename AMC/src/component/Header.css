@@ -1,11 +1,11 @@
 
 
-.header {
+.header-nav {
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding:15px 30px;
-  background: linear-gradient(90deg, #cb9eff, #c194ff, #ac8ff7);
+  background: linear-gradient(90deg, #c99efa, #c195ff, #ac8ff7);
   color: #fff;
   font-family: Arial, sans-serif;
   font-weight: bold;
@@ -53,12 +53,14 @@
 }
 
 .search-input {
+
   padding: 5px 10px;
   border-radius: 2px;
   border: none;
   outline: none;
   font-size: 14px;
   background-color: #f2e5ff;
+  margin-right: 1vw;
 }
 
 .icon {
@@ -78,4 +80,8 @@
 .settings-icon:hover,
 .profile-icon:hover {
   opacity: 0.8;
+}
+.icon-notification-icon{
+
+  margin-right: 1vw;
 }

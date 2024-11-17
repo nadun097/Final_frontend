@@ -34,7 +34,7 @@ export default function Header() {
   };
 
   return (
-    <header className="header">
+    <header className="header-nav">
       <img src={imageSrc} alt="nexasoft logo" className="logo" />
       <nav>
         <ul className="nav-page">
@@ -51,7 +51,7 @@ export default function Header() {
       </nav>
       <div className="right-section">
         <input type="text" placeholder="Search..." className="search-input" />
-        <i className="icon notification-icon">🔔</i>
+        <i className="icon-notification-icon">🔔</i>
         <img src="https://via.placeholder.com/30" alt="profile" className="profile-icon" />
       </div>
     </header>

@@ -1,136 +1,100 @@
-import React, { useState } from 'react';
-import './KanbanBoard.css';
+import React from "react";
+import "./KanbanBoard.css"; // Make sure you have the CSS file in the same directory
 
 export default function KanbanBoard() {
-  const [columns, setColumns] = useState([
-    { title: 'Pending', cards: [] },
-    { title: 'Ongoing', cards: [] },
-    { title: 'Accomplished', cards: [] },
-    { title: 'Expired', cards: [] },
-  ]);
-  
-  const [newColumnTitle, setNewColumnTitle] = useState('');
-  const [showModal, setShowModal] = useState(false);
-  const [jobDetails, setJobDetails] = useState({
-    title: '',
-    description: '',
-    image: '',
-    employees: []
-  });
-  const [employeeName, setEmployeeName] = useState('');
-  const [selectedColumn, setSelectedColumn] = useState(null);
-  const [dragOver, setDragOver] = useState(false);
-
-  const handleAddJob = (columnIndex) => {
-    setSelectedColumn(columnIndex);
-    setShowModal(true);
-  };
-
-  
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setJobDetails((prevDetails) => ({ ...prevDetails, [name]: value }));
-  };
-
-  
-  const handleImageInputChange = (e) => {
-    const { value } = e.target;
-    const isValidURL = value.match(/\.(jpeg|jpg|gif|png)$/) != null;
-    setJobDetails((prevDetails) => ({
-      ...prevDetails,
-      image: isValidURL ? value : '',
-    }));
-  };
-
-
-  const handleAddEmployee = () => {
-    if (employeeName.trim() === '') return;
-    setJobDetails((prevDetails) => ({
-      ...prevDetails,
-      employees: [...prevDetails.employees, { name: employeeName, avatar: 'https://via.placeholder.com/30' }]
-    }));
-    setEmployeeName('');
-  };
-
- 
-  const handleDrop = (e) => {
-    e.preventDefault();
-    setDragOver(false);
-
-    if (e.dataTransfer.files && e.dataTransfer.files[0]) {
-      const file = e.dataTransfer.files[0];
-      
-      if (file.type.startsWith('image/')) {
-        const reader = new FileReader();
-        reader.onload = () => {
-          setJobDetails((prevDetails) => ({
-            ...prevDetails,
-            image: reader.result, // Set image data URL
-          }));
-        };
-        reader.readAsDataURL(file);
-      }
-    }
-  };
-
- 
-  const handleDragOver = (e) => {
-    e.preventDefault();
-    setDragOver(true);
-  };
-
-
-  const handleDragLeave = () => {
-    setDragOver(false);
-  };
-
-  
-  const handleSubmit = () => {
-    const newCard = {
-      ...jobDetails,
-      image: jobDetails.image || 'https://via.placeholder.com/150',
-    };
-    const updatedColumns = columns.map((col, index) =>
-      index === selectedColumn ? { ...col, cards: [...col.cards, newCard] } : col
-    );
-    setColumns(updatedColumns);
-    setShowModal(false);
-    setJobDetails({ title: '', description: '', image: '', employees: [] });
-  };
-
-
-  const handleCancel = () => {
-    setShowModal(false);
-    setJobDetails({ title: '', description: '', image: '', employees: [] });
-    setEmployeeName('');
-  };
+  const columns = [
+    {
+      title: "Pending",
+      cards: [
+        {
+          title: "Task 5", // Task 5 is now at the top
+          description: "This is the first pending task. This is the second pending task.",
+          type: "low", // Define a type for dynamic styling
+          employees: [
+            { name: "Alice", avatar: "https://via.placeholder.com/32" },
+            { name: "Bob", avatar: "https://via.placeholder.com/32" },
+          ],
+          image: "https://via.placeholder.com/150", // This card will have an image
+        },
+        {
+          title: "Task 1", // Task 1 follows Task 5
+          description: "This is the second pending task",
+          type: "low", // Define a type for dynamic styling
+          employees: [
+            { name: "Alice", avatar: "https://via.placeholder.com/32" },
+            { name: "Dave", avatar: "https://via.placeholder.com/32" },
+            { name: "Dave", avatar: "https://via.placeholder.com/32" },
+          ],
+          image: null, // This card will not have an image
+        },
+      ],
+    },
+    {
+      title: "Ongoing",
+      cards: [
+        {
+          title: "Task 2",
+          description: "This task is currently in progress.",
+          type: "medium", // Define a type for dynamic styling
+          employees: [
+            { name: "Charlie", avatar: "https://via.placeholder.com/32" },
+          ],
+          image: "https://via.placeholder.com/150", // This card will have an image
+        },
+      ],
+    },
+    {
+      title: "Accomplished",
+      cards: [
+        {
+          title: "Task 3",
+          description: "This task has been completed.",
+          type: "high", // Define a type for dynamic styling
+          employees: [
+            { name: "Eve", avatar: "https://via.placeholder.com/32" },
+            { name: "Frank", avatar: "https://via.placeholder.com/32" },
+            { name: "Dave", avatar: "https://via.placeholder.com/32" },
+          ],
+          image: null, // This card will not have an image
+        },
+      ],
+    },
+    {
+      title: "Expired",
+      cards: [
+        {
+          title: "Task 4",
+          description: "This task is expired.",
+          type: "expired", // Define a type for dynamic styling
+          employees: [
+            { name: "Grace", avatar: "https://via.placeholder.com/32" },
+            { name: "Heidi", avatar: "https://via.placeholder.com/32" },
+          ],
+          image: "https://via.placeholder.com/150", // This card will have an image
+        },
+      ],
+    },
+  ];
 
   return (
     <div className="kanban-container">
-      {/* Add List Container */}
-      <div className="add-list-container">
-        <input
-          type="text"
-          value={newColumnTitle}
-          onChange={(e) => setNewColumnTitle(e.target.value)}
-          placeholder="Enter list title"
-        />
-        <button onClick={() => {
-          setColumns([...columns, { title: newColumnTitle, cards: [] }]);
-          setNewColumnTitle('');
-        }}>Add List</button>
-      </div>
-
-      {/* Kanban Board with Columns and Cards */}
       <div className="kanban-board">
         {columns.map((column, index) => (
           <div key={index} className="kanban-column">
             <h3>{column.title}</h3>
             {column.cards.map((card, cardIndex) => (
-              <div key={cardIndex} className="kanban-card">
-                <div className="card-image">
-                  <img src={card.image} alt={`${card.title} visual`} />
-                </div>
+              <div
+                key={cardIndex}
+                className={`kanban-card ${card.type}-card`} // Dynamic class based on type
+              >
+                {card.image && ( // Conditionally render the image section
+                  <div className="card-image">
+                    <img
+                      src={card.image}
+                      alt={card.title}
+                    />
+                  </div>
+                )}
                 <div className="card-content">
                   <div className="card-title">{card.title}</div>
                   <div className="card-description">{card.description}</div>
@@ -138,11 +102,11 @@ export default function KanbanBoard() {
                 <div className="card-footer">
                   <div className="employee-avatars">
                     {card.employees.slice(0, 3).map((employee, empIndex) => (
-                      <img 
-                        key={empIndex} 
-                        src={employee.avatar} 
-                        alt={employee.name} 
-                        className="employee-avatar" 
+                      <img
+                        key={empIndex}
+                        src={employee.avatar}
+                        alt={employee.name}
+                        className="employee-avatar"
                         title={employee.name}
                       />
                     ))}
@@ -155,65 +119,9 @@ export default function KanbanBoard() {
                 </div>
               </div>
             ))}
-            <button className="add-card" onClick={() => handleAddJob(index)}>+ Add a job</button>
           </div>
         ))}
       </div>
-
-      {/* Modal for Adding Job Details */}
-      {showModal && (
-        <div className="modal">
-          <div className="modal-content">
-            <h2>Job Details</h2>
-            <label>Enter job title</label>
-            <input type="text" name="title" value={jobDetails.title} onChange={handleInputChange} />
-            <label>Enter job description</label>
-            <textarea name="description" value={jobDetails.description} onChange={handleInputChange}></textarea>
-            <label>Upload photo URL</label>
-            <input type="text" name="image" value={jobDetails.image} onChange={handleImageInputChange} />
-
-            {/* Employee Input Section */}
-            <label>Enter Workers in this project</label>
-            <div className="employee-input">
-              <input
-                type="text"
-                value={employeeName}
-                onChange={(e) => setEmployeeName(e.target.value)}
-                placeholder="Enter employee name"
-              />
-              <button onClick={handleAddEmployee}>Add Employee</button>
-            </div>
-            <div className="employee-avatars">
-              {jobDetails.employees.map((employee, empIndex) => (
-                <img
-                  key={empIndex}
-                  src={employee.avatar}
-                  alt={employee.name}
-                  className="employee-avatar"
-                  title={employee.name}
-                />
-              ))}
-            </div>
-
-            {/* Drag-and-Drop Area */}
-            <div
-              className={`drag-drop-area ${dragOver ? 'drag-over' : ''}`}
-              onDrop={handleDrop}
-              onDragOver={handleDragOver}
-              onDragLeave={handleDragLeave}
-            >
-              {jobDetails.image ? (
-                <img src={jobDetails.image} alt="Dropped image" style={{ width: '100%', borderRadius: '8px' }} />
-              ) : (
-                <p>Drag and drop an image here or click to select</p>
-              )}
-            </div>
-
-            <button onClick={handleSubmit}>Save Job</button>
-            <button onClick={handleCancel}>Cancel</button>
-          </div>
-        </div>
-      )}
     </div>
   );
 }
