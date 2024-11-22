@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import './JobDetails.css';
-import wallpaper from './assets/wallpaper.jpg';
-import icon1 from './icon/Rounded Rectangle 1.png';
-import icon2 from './icon/2991248.png';
-import icon3 from './icon/icons8-member-96(3).png';
-import icon4 from './icon/icons8-tags-96.png';
-import icon5 from './icon/icons8-clock-96.png';
-import icon6 from './icon/icons8-attachment-90.png';
-import icon7 from './icon/icons8-check-box-96.png';
+import wallpaper from '../assets/wallpaper.jpg';
+import icon1 from '../icon/Rounded Rectangle 1.png';
+import icon2 from '../icon/2991248.png';
+import icon3 from '../icon/icons8-member-96(3).png';
+import icon4 from '../icon/icons8-tags-96.png';
+import icon5 from '../icon/icons8-clock-96.png';
+import icon6 from '../icon/icons8-attachment-90.png';
+import icon7 from '../icon/icons8-check-box-96.png';
 
 
 
