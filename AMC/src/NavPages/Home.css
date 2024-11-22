@@ -6,7 +6,7 @@
   font-size: 30px;
   text-align: left;
   font-weight: bold;
-  margin-bottom: 10px;
+  margin-bottom: px;
   color: #333333;
 }
 
@@ -17,7 +17,7 @@
   align-items: stretch;
 }
 
-/* Left Column: Metrics Section */
+
 .metrics-section {
   flex: 1;
   display: flex;
@@ -45,27 +45,26 @@
   padding: 20px;
   border-radius: 8px;
   text-align: center;
-  border: 2px solid #ddb4f9;
+  border: 2px solid #ddb4f9; 
+}
+.metric-total{
+  font-size:40px ;
 }
 
-.metric-total {
+.metric-active{
   font-size: 40px;
 }
+.metric-title{
 
-.metric-active {
-  font-size: 40px;
-}
-
-.metric-title {
   font-size: 15px;
 }
-
-.metric-users {
+.metric-users{
   font-size: 40px;
+
 }
 
 .reminder-card {
-  flex: 1;
+ flex: 1;
   background-color: #f7f7f9;
   padding: 20px;
   border-radius: 8px;
@@ -73,52 +72,25 @@
   border: 2px solid #ddb4f9;
 }
 
+.bottom-row {
+  display: flex;
+  gap: 20px;
+  width: 100%; 
+}
+
+.chart-placeholder {
+  
+  height: 500px;
+  flex-grow: 1;
+  border-radius: 4px;
+  margin-top: 10px;
+}
+
 .reminder-list {
   text-align: left;
 }
 
-/* Chart Placeholders with Unique Styles */
-.total-amc-chart {
-  background-image: url('C:\Users\User\Documents\GitHub\React-test-project\AMC\src\assets\firstGraph.png');
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
-  height: 500px;
-  border-radius: 4px;
-  margin-top: 10px;
-}
 
-.active-amc-chart {
-  background-image: url('C:\Users\User\Documents\GitHub\React-test-project\AMC\src\assets\secondChart.png');
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
-  height: 500px;
-  border-radius: 4px;
-  margin-top: 10px;
-}
-
-.total-users-chart {
-  background-image: url('C:\Users\User\Documents\GitHub\React-test-project\AMC\src\assets\lastGraph.png');
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
-  height: 500px;
-  border-radius: 4px;
-  margin-top: 10px;
-}
-
-.data-chart {
-  background-image: url('C:\Users\User\Documents\GitHub\React-test-project\AMC\src\assets\dataGraph.png');
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
-  height: 500px;
-  border-radius: 4px;
-  margin-top: 10px;
-}
-
-/* Right Column: Data and Chart Sections */
 .data-chart-section {
   flex: 1;
   display: flex;
@@ -134,28 +106,34 @@
   border: 2px solid #ddb4f9;
 }
 
-.data-list {
-  list-style-type: none;
-  padding: 0;
+.data-placeholder, .chart-placeholder {
+  background-color: #e0e0e0;
+  height: 150px;
+  border-radius: 4px;
   margin-top: 10px;
+}
+.data-list {
+  list-style-type: none; 
+  padding: 0; 
+  margin-top: 10px; 
 }
 
 .data-list li {
   background-color: #ffffff;
   padding: 10px 15px;
-  margin-bottom: 10px;
-  border-radius: 4px;
-  border: 1px solid #ddb4f9;
-  font-size: 16px;
-  color: #333333;
+  margin-bottom: 10px; 
+  border-radius: 4px; 
+  border: 1px solid #ddb4f9; 
+  font-size: 16px; 
+  color: #333333; 
 }
 
 .chart-section {
-  background-color: #f7f7f9;
-  padding: 20px;
-  border-radius: 8px;
-  border: 2px solid #ddb4f9;
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
+background-color: #f7f7f9;
+padding: 20px;
+border-radius: 8px;
+border: 2px solid #ddb4f9;
+display: flex;
+flex-direction: column;
+flex-grow: 1;
 }

@@ -1,0 +1,77 @@
+
+
+.add-amc-container {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 20px;
+    background: linear-gradient(135deg, #ece3f5, #e6dfef);
+    border: 1px solid #ddd;
+    border-radius: 8px;
+  }
+  
+  .add-amc-container h4 {
+    font-size: 200%;
+    text-align: center;
+    margin-bottom: 20px;
+    margin-top: 10px;
+    font-family: Arial, sans-serif;
+    color: #34283c;
+  }
+  
+  .amc-form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+  }
+  
+  .amc-form .form-group1 {
+    flex: 1 1 calc(50% - 10px);
+    margin-bottom: 25px;
+  }
+  
+  .amc-form label {
+    text-align: left;
+    display: block;
+    margin-bottom: 5px;
+    font-size: 18px;
+    color: #100303;
+  }
+  
+  .amc-form input,
+  .amc-form textarea,
+  .amc-form select {
+    width: 100%;
+    padding: 10px 15px 10px 5px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    text-align: left;
+  }
+  
+  .amc-form textarea {
+    resize: none;
+  }
+  
+  .amc-form input:focus,
+  .amc-form textarea:focus,
+  .amc-form select:focus {
+    border-color: #903dc7;
+    outline: none;
+  }
+  
+  .submit-button {
+    width: 100%;
+    padding: 10px;
+    background-color: #652a89;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  .submit-button:hover {
+    background-color: #ddb4f9;
+  }
+  
