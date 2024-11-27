@@ -2,65 +2,84 @@ import React, { useState } from "react";
 import "./ClientForm.css";
 
 const AddClient = () => {
+  // State to manage form data
   const [clientData, setClientData] = useState({
-    clientID: "",
-    clName: "",
+    user_type: "",
     amcNum: "",
     email: "",
     phone: "",
-    address: "",
-    projectDescription: "",
+    first_name: "",
+    last_name: "",
+    password: "",
   });
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setClientData({ ...clientData, [name]: value });
+  // State to handle success/error messages
+  const [message, setMessage] = useState("");
+
+  // Handle input changes
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setClientData({
+      ...clientData,
+      [name]: value,
+    });
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("Client Data Submitted:", clientData);
-    alert("Client added successfully!");
-    setClientData({
-        clientID: "",
-        clName: "",
-        amcNum: "",
-        email: "",
-        phone: "",
-        address: "",
-        projectDescription: "",
-    });
+  // Handle form submission
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    try {
+      const response = await fetch("http://localhost:8083/api/user/register", {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          user_contact: clientData.phone,
+          user_email: clientData.email,
+          user_first_name: clientData.first_name,
+          user_id: clientData.userid,
+          user_last_name: clientData.last_name,
+          user_password: clientData.password,
+          user_type: clientData.user_type,
+        }),
+        credentials: "include",
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        setMessage(`Client added successfully: ${data.message || "Success"}`);
+      } else {
+        const errorData = await response.json();
+        setMessage(`Error: ${errorData.message || "Failed to add client"}`);
+      }
+    } catch (error) {
+      setMessage(`Error: ${error.message}`);
+    }
   };
 
   return (
     <div className="form-wrapper">
       <div className="form-container">
         <h2>Client Registration</h2>
+        {message && <p className="message">{message}</p>}
         <form onSubmit={handleSubmit} className="client-form">
-        <div className="form-group">
+          <div className="form-group">
             <input
               type="text"
-              name="clientID"
-              value={clientData.clientID}
+              name="user_type"
+              value={clientData.user_type}
               onChange={handleChange}
-              placeholder="Client ID"
+              placeholder="User Type"
               required
             />
           </div>
           <div className="form-group">
             <input
               type="text"
-              name="clName"
-              value={clientData.clName}
-              onChange={handleChange}
-              placeholder="Client Name"
-              required
-            />
-          </div>
-          <div className="form-group">
-            <input
-              type="text"
-              name="amcNum"
+              name="userid"
               value={clientData.amcNum}
               onChange={handleChange}
               placeholder="AMC Number"
@@ -73,7 +92,7 @@ const AddClient = () => {
               name="email"
               value={clientData.email}
               onChange={handleChange}
-              placeholder="Email"
+              placeholder="User Email"
               required
             />
           </div>
@@ -83,30 +102,40 @@ const AddClient = () => {
               name="phone"
               value={clientData.phone}
               onChange={handleChange}
-              placeholder="Phone"
+              placeholder="User Contact"
               required
             />
           </div>
           <div className="form-group">
             <input
               type="text"
-              name="address"
-              value={clientData.address}
+              name="first_name"
+              value={clientData.first_name}
               onChange={handleChange}
-              placeholder="Address"
+              placeholder="User First Name"
               required
             />
           </div>
           <div className="form-group">
-            <textarea
-              name="projectDescription"
-              value={clientData.projectDescription}
+            <input
+              type="text"
+              name="last_name"
+              value={clientData.last_name}
               onChange={handleChange}
-              placeholder="Project Description"
+              placeholder="User Last Name"
               required
-            ></textarea>
+            />
           </div>
-          
+          <div className="form-group">
+            <input
+              type="password"
+              name="password"
+              value={clientData.password}
+              onChange={handleChange}
+              placeholder="Password"
+              required
+            />
+          </div>
           <button type="submit" className="submit-btn">
             Add Client
           </button>
