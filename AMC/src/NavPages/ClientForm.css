@@ -12,7 +12,7 @@
   width: 500px;
   padding: 20px;
   border-radius: 10px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 15px rgba(13, 13, 13, 0.2);
   text-align: center;
   background: linear-gradient(135deg, #ece3f5, #e6dfef);
 }
