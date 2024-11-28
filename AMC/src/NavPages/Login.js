@@ -18,7 +18,6 @@ const Login = () => {
     console.log('Email:', email);
     console.log('Password:', password);
 
-    
     // Navigate to the home page after successful login
     navigate('/home');
   };

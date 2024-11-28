@@ -23,6 +23,7 @@ import AmcClientDetails from "./NavbarReports/AmcClientDetails.js";
 import RenewalAmcs from "./NavbarReports/RenewalAmcs.js";
 import ScheduledAmcs from "./NavbarReports/ScheduledAmcs.js";
 
+
 // Dummy components for individual pages
 const FullAmc = () => <div>{<FullAmcs />}</div>;
 const AmcPayment = () => <div>{<AmcPayments />}</div>;

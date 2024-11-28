@@ -1,148 +1,109 @@
 import React, { useState } from "react";
 import "./ClientForm.css";
 
-const AddClient = () => {
-  // State to manage form data
-  const [clientData, setClientData] = useState({
-    user_type: "",
-    amcNum: "",
-    email: "",
-    phone: "",
-    first_name: "",
-    last_name: "",
-    password: "",
+const UserRegistration = () => {
+  const [userData, setUserData] = useState({
+     user_contact: 123456789,
+    user_email: 'example@example.com',
+    user_first_name: 'John',
+    user_id: 1,
+    user_last_name: 'Doe',
+    user_password: 'password123',
+    user_type: 'admin',
   });
 
-  // State to handle success/error messages
-  const [message, setMessage] = useState("");
-
-  // Handle input changes
-  const handleChange = (event) => {
-    const { name, value } = event.target;
-    setClientData({
-      ...clientData,
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setUserData({
+      ...userData,
       [name]: value,
     });
   };
 
-  // Handle form submission
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-
+  const handleSubmit = async (e) => {
+    e.preventDefault();
     try {
-      const response = await fetch("http://localhost:8083/api/user/register", {
-        method: "POST",
+      const response = await fetch('http://localhost:3000/api/user/register', {
+        method: 'POST',
         headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
-          user_contact: clientData.phone,
-          user_email: clientData.email,
-          user_first_name: clientData.first_name,
-          user_id: clientData.userid,
-          user_last_name: clientData.last_name,
-          user_password: clientData.password,
-          user_type: clientData.user_type,
-        }),
-        credentials: "include",
+        body: JSON.stringify(userData),
+        credentials: 'include', // Include cookies/credentials
       });
 
       if (response.ok) {
-        const data = await response.json();
-        setMessage(`Client added successfully: ${data.message || "Success"}`);
+        const result = await response.json();
+        console.log('User registered successfully:', result);
+        alert('User registered successfully!');
       } else {
-        const errorData = await response.json();
-        setMessage(`Error: ${errorData.message || "Failed to add client"}`);
+        console.error('Failed to register user:', response.status);
+        alert('Failed to register user. Please try again.');
       }
     } catch (error) {
-      setMessage(`Error: ${error.message}`);
+      console.error('Error during registration:', error);
+      alert('An error occurred. Please check the console for details.');
     }
   };
 
   return (
     <div className="form-wrapper">
-      <div className="form-container">
-        <h2>Client Registration</h2>
-        {message && <p className="message">{message}</p>}
-        <form onSubmit={handleSubmit} className="client-form">
-          <div className="form-group">
-            <input
-              type="text"
-              name="user_type"
-              value={clientData.user_type}
-              onChange={handleChange}
-              placeholder="User Type"
-              required
-            />
-          </div>
-          <div className="form-group">
-            <input
-              type="text"
-              name="userid"
-              value={clientData.amcNum}
-              onChange={handleChange}
-              placeholder="AMC Number"
-              required
-            />
-          </div>
-          <div className="form-group">
-            <input
-              type="email"
-              name="email"
-              value={clientData.email}
-              onChange={handleChange}
-              placeholder="User Email"
-              required
-            />
-          </div>
-          <div className="form-group">
-            <input
-              type="tel"
-              name="phone"
-              value={clientData.phone}
-              onChange={handleChange}
-              placeholder="User Contact"
-              required
-            />
-          </div>
-          <div className="form-group">
-            <input
-              type="text"
-              name="first_name"
-              value={clientData.first_name}
-              onChange={handleChange}
-              placeholder="User First Name"
-              required
-            />
-          </div>
-          <div className="form-group">
-            <input
-              type="text"
-              name="last_name"
-              value={clientData.last_name}
-              onChange={handleChange}
-              placeholder="User Last Name"
-              required
-            />
-          </div>
-          <div className="form-group">
-            <input
-              type="password"
-              name="password"
-              value={clientData.password}
-              onChange={handleChange}
-              placeholder="Password"
-              required
-            />
-          </div>
-          <button type="submit" className="submit-btn">
-            Add Client
-          </button>
-        </form>
-      </div>
+      <h2>User Registration</h2>
+      <form onSubmit={handleSubmit} className="registration-form">
+        <input
+          type="text"
+          name="user_contact"
+          placeholder="Contact Number"
+          value={userData.user_contact}
+          onChange={handleChange}
+          required
+        />
+        <input
+          type="email"
+          name="user_email"
+          placeholder="Email"
+          value={userData.user_email}
+          onChange={handleChange}
+          required
+        />
+        <input
+          type="text"
+          name="user_first_name"
+          placeholder="First Name"
+          value={userData.user_first_name}
+          onChange={handleChange}
+          required
+        />
+       
+        <input
+          type="text"
+          name="user_last_name"
+          placeholder="Last Name"
+          value={userData.user_last_name}
+          onChange={handleChange}
+          required
+        />
+        <input
+          type="password"
+          name="user_password"
+          placeholder="Password"
+          value={userData.user_password}
+          onChange={handleChange}
+          required
+        />
+        <input
+          type="text"
+          name="user_type"
+          placeholder="User Type"
+          value={userData.user_type}
+          onChange={handleChange}
+          required
+        />
+        <button type="submit">Register</button>
+      </form>
     </div>
   );
 };
 
-export default AddClient;
+export default UserRegistration;
