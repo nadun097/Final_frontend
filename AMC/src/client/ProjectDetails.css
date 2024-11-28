@@ -1,0 +1,31 @@
+.project-details {
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .back-button {
+    display: inline-block;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    padding: 10px 15px;
+    background-color: #eb9a2f;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .back-button:hover {
+    background-color: #d77b2a;
+  }
+  
+  .tab-content {
+    margin-top: 20px;
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+  }
+  

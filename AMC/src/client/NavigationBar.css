@@ -1,0 +1,26 @@
+.navigation-bar {
+    padding: 10px 0;
+    border-top: -20px;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .navigation-bar ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+  }
+  
+  .navigation-bar li {
+    cursor: pointer;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+  }
+  
+  .navigation-bar li.active {
+    background-color: #faa031;
+    color: #fff;
+  }
+  

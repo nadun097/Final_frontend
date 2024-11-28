@@ -1,9 +1,9 @@
 import React from "react";
 
-export default function AddClient() {
+export default function AddAmc() {
   return (
     <div>
-      <h4>Add Clients</h4>
+      <h4>FULL AMC REPORTS</h4>
     </div>
   );
 }

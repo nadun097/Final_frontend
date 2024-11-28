@@ -1,9 +1,10 @@
-
-  import React from "react";
+ import React from "react";
   import './Home.css';
- 
-  
 
+  import firstGraph from '../assets/firstGraph.png';
+import secondGraph from '../assets/secondGraph.jpg';
+import lastGraph from '../assets/lastGraph.png';
+import dataGraph from '../assets/dataGraph.png';
   
     function Home() {
       return (
@@ -24,13 +25,13 @@
                 <div className="metric-card">
                   <h4>Total AMC</h4>
                   <p className="metric-total">1,137</p>
-                  <div className="chart-placeholder total-amc-chart"></div>
+                  <img src={firstGraph} alt="Total AMC Chart" className="chart-placeholder total-amc-chart"/>
                 </div>
     
                 <div className="metric-card">
                   <h4>Active AMC</h4>
                   <p className="metric-active">737</p>
-                  <div className="chart-placeholder active-amc-chart"></div>
+                  <img src={secondGraph} alt="Active AMC Chart" className="chart-placeholder active-amc-chart" />
                 </div>
               </div>
     
@@ -47,7 +48,7 @@
                 <div className="metric-card">
                   <h4 className="metric-title">Total Users</h4>
                   <p className="metric-users">20K</p>
-                  <div className="chart-placeholder total-users-chart"></div>
+                  <img src={lastGraph} alt="Total Users Chart" className="chart-placeholder total-users-chart" />
                 </div>
               </div>
             </div>
@@ -67,7 +68,7 @@
     
               <div className="chart-section">
                 <h4>Data Chart</h4>
-                <div className="chart-placeholder data-chart"></div>
+                <img src={dataGraph} alt="Data Chart" className="chart-placeholder data-chart" />
               </div>
             </div>
           </div>

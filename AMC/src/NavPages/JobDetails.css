@@ -1,25 +1,30 @@
-/* Apply light gray background color to the entire page */
+
 body {
-  background-color: #f0f0f0; /* Light gray background */
+  background-color: #f0f0f0; 
 }
 
-/* General styling for project info */
+
 .project-info {
   color: gray;
 }
 
-/* Header styling */
+.members-hedding{
+padding: 20px 0px 10px 0px;
+
+}
+
+
 .header h1 {
-  margin: 0; /* Reset default margins */
-  font-size: 35px; /* Adjust size if needed */
-  line-height: 1.5; /* Ensure proper spacing */
+  margin: 0; 
+  font-size: 35px; 
+  line-height: 1.5; 
 
 
 }
 
-/* Members section styling */
 .members {
   display: flex;
+  
 }
 
 .member-avatar {
@@ -30,23 +35,23 @@ body {
 }
 
 .inList {
-  text-align: left; /* Aligns text to the left */
+  text-align: left; 
   margin-left: 0;
-  margin-top: -25px; /* Ensures no unnecessary margin */
-  padding-left: 0; /* Optional: Add padding for spacing */
-}
+  margin-top: -5px;
+  padding-left: 0;
+ }
 
-/* Sidebar actions styling */
+
 .sidebar-actions {
   position: absolute;
   top: 26vh;
  
-  right: 10%; /* Adjusted to leave more space on the right */
+  right: 10%; 
   width: 15%;
   display: flex;
   flex-direction: column;
   gap: 10px;
-  background-color: #f0f0f0; /* Light gray background for the sidebar */
+  background-color: #f0f0f0; 
 }
 
 .sidebar-actions h2 {
@@ -67,7 +72,7 @@ body {
   box-shadow: 0px 2px 0px rgba(0, 0, 0, 0.2);
 }
 
-/* Dropdown content styling */
+
 .dropdown-content {
   margin-top: -10px;
   padding: 5px;
@@ -77,11 +82,11 @@ body {
   font-size: medium;
 }
 
-/* Asset section styling */
+
 .asset-section {
   text-align: left;
   margin-top: 20px;
-  background-color: #f0f0f0; /* Light gray background for the asset section */
+  background-color: #f0f0f0; 
 }
 
 .asset-thumbnails {
@@ -104,22 +109,22 @@ body {
   display: block;
 }
 
-/* Description and comment sections */
+
 .description-section,
 .comment-section {
-  margin-top: 20px;
+  margin-top: 40px;
   text-align: left;
-  background-color: #f0f0f0; /* Light gray background for description and comment sections */
+  background-color: #f0f0f0; 
 }
 
 .description-section {
   margin-top: 20px;
-  margin-left: 0; /* Moves the section to the left-hand side */
-  text-align: left; /* Ensures text aligns to the left */
+  margin-left: 0; 
+  text-align: left; 
 }
 
 .description-section h3 {
-  margin-bottom: 10px; /* Removes default margin */
+  margin-bottom: 20px; 
 }
 
 .description-section textarea {
@@ -129,6 +134,7 @@ body {
   padding: 10px;
   border-radius: 4px;
   border: 1px solid #ccc;
+  
 }
 
 .description-section textarea,
@@ -139,12 +145,13 @@ body {
   border-radius: 4px;
   border: 1px solid #ccc;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  margin-top: 10px;
 }
 
-/* Comment section button styling */
+
 .comment-section button {
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-  margin-top: 10px;
+  margin-top: 20px;
   padding: 10px 20px;
   background-color: #00ff37;
   color: white;
@@ -152,23 +159,22 @@ body {
   border-radius: 4px;
 }
 
-/* Individual comment styling */
 .comment {
   text-align: left;
   margin-top: 15px;
 }
 
-/* Job details container */
+
 .job-details-container {
   display: flex;
   flex-direction: column;
   padding-left: 13%;
   padding-right: 13%;
   font-family: Arial, sans-serif;
-  background-color: #f0f0f0; /* Light gray background for the entire container */
+  background-color: #f0f0f0; 
 }
 
-/* Image styling */
+
 .image {
   width: 100%;
   height: 25vh;
