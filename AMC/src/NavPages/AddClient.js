@@ -1,33 +1,30 @@
 import React, { useState } from "react";
 import "./ClientForm.css";
-import axios from "axios";
 
-const UserRegistration = () => {
-  const [userData, setUserData] = useState({
-    user_contact: "",
-    user_email: "",
-    user_first_name: "",
-    user_last_name: "",
-    user_password: "",
-    user_type: "",
+const AddClient = () => {
+  const [clientData, setClientData] = useState({
+    clientID: "",
+    clName: "",
+    amcNum: "",
+    email: "",
+    phone: "",
+
+    projectDescription: "",
   });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setUserData({
-      ...userData,
-      [name]: value,
-    });
+    setClientData({ ...clientData, [name]: value });
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
 
     try {
       // Make an Axios POST request to send all user data
       const response = await axios.post(
         "http://localhost:8083/api/user/register", // Correct endpoint for registration
-        userData 
+        userData // Send all form data as JSON in the request body
       );
 
       // Handle success
@@ -46,60 +43,86 @@ const UserRegistration = () => {
 
   return (
     <div className="form-wrapper">
-      <h2>User Registration</h2>
-      <form onSubmit={handleSubmit} className="registration-form">
-        <input
-          type="text"
-          name="user_contact"
-          placeholder="Contact Number"
-          value={userData.user_contact}
-          onChange={handleChange}
-          required
-        />
-        <input
-          type="email"
-          name="user_email"
-          placeholder="Email"
-          value={userData.user_email}
-          onChange={handleChange}
-          required
-        />
-        <input
-          type="text"
-          name="user_first_name"
-          placeholder="First Name"
-          value={userData.user_first_name}
-          onChange={handleChange}
-          required
-        />
-        <input
-          type="text"
-          name="user_last_name"
-          placeholder="Last Name"
-          value={userData.user_last_name}
-          onChange={handleChange}
-          required
-        />
-        <input
-          type="password"
-          name="user_password"
-          placeholder="Password"
-          value={userData.user_password}
-          onChange={handleChange}
-          required
-        />
-        <input
-          type="text"
-          name="user_type"
-          placeholder="User Type"
-          value={userData.user_type}
-          onChange={handleChange}
-          required
-        />
-        <button type="submit">Register</button>
-      </form>
+      <div className="form-container">
+        <h2>Client Registration</h2>
+        <form onSubmit={handleSubmit} className="client-form">
+        <div className="form-group">
+            <input
+              type="text"
+              name="clientID"
+              value={clientData.clientID}
+              onChange={handleChange}
+              placeholder="Client ID"
+              required
+            />
+          </div>
+          <div className="form-group">
+            <input
+              type="text"
+              name="clName"
+              value={clientData.clName}
+              onChange={handleChange}
+              placeholder="Client Name"
+              required
+            />
+          </div>
+          <div className="form-group">
+            <input
+              type="text"
+              name="amcNum"
+              value={clientData.amcNum}
+              onChange={handleChange}
+              placeholder="AMC Number"
+              required
+            />
+          </div>
+          <div className="form-group">
+            <input
+              type="email"
+              name="email"
+              value={clientData.email}
+              onChange={handleChange}
+              placeholder="Email"
+              required
+            />
+          </div>
+          <div className="form-group">
+            <input
+              type="tel"
+              name="phone"
+              value={clientData.phone}
+              onChange={handleChange}
+              placeholder="Phone"
+              required
+            />
+          </div>
+          <div className="form-group">
+            <input
+              type="text"
+              name="address"
+              value={clientData.address}
+              onChange={handleChange}
+              placeholder="Address"
+              required
+            />
+          </div>
+          <div className="form-group">
+            <textarea
+              name="projectDescription"
+              value={clientData.projectDescription}
+              onChange={handleChange}
+              placeholder="Project Description"
+              required
+            ></textarea>
+          </div>
+          
+          <button type="submit" className="submit-btn">
+            Add Client
+          </button>
+        </form>
+      </div>
     </div>
   );
 };
 
-export default UserRegistration;
+export default AddClient;
