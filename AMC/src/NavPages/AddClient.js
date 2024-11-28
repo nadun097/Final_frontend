@@ -27,7 +27,7 @@ const UserRegistration = () => {
       // Make an Axios POST request to send all user data
       const response = await axios.post(
         "http://localhost:8083/api/user/register", // Correct endpoint for registration
-        userData // Send all form data as JSON in the request body
+        userData 
       );
 
       // Handle success

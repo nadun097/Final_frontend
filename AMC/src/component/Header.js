@@ -22,8 +22,8 @@ export default function Header() {
     case "REPORTS ▼":
       navigate("/report");
       break;
-    case "ADD CLIENTS ▼":
-      navigate("/addClients");
+    case "ADD USER ▼":
+      navigate("/adduser");
       break;
     case "ADD AMC ▼":
       navigate("/addAmc");
@@ -38,7 +38,7 @@ export default function Header() {
       <img src={imageSrc} alt="nexasoft logo" className="logo" />
       <nav>
         <ul className="nav-page">
-          {["HOME ▼", "PROJECTS ▼", "INVOICE ▼", "REPORTS ▼", "ADD CLIENTS ▼", "ADD AMC ▼"].map((item) => (
+          {["HOME ▼", "PROJECTS ▼", "INVOICE ▼", "REPORTS ▼", "ADD USER ▼", "ADD AMC ▼"].map((item) => (
             <li
               key={item}
               className={activeItem === item ? "active" : ""}

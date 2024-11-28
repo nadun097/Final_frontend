@@ -4,7 +4,7 @@ import Header from "./component/Header";
 import Home from "./NavPages/Home";
 import KanbanBoardList from "./NavPages/KanbanBoardList";
 import Invoice from "./NavPages/Invoice";
-import AddClient from "./NavPages/AddClient";
+import AddUser from "./NavPages/AddUser";
 import AddAMC from "./NavPages/AddAMC";
 import AMCnavbar from "./component/AMCnavbar";
 import Login from "./NavPages/Login";
@@ -22,7 +22,6 @@ import ClientWiseAmcs from "./NavbarReports/ClientWiseAmcs.js";
 import AmcClientDetails from "./NavbarReports/AmcClientDetails.js";
 import RenewalAmcs from "./NavbarReports/RenewalAmcs.js";
 import ScheduledAmcs from "./NavbarReports/ScheduledAmcs.js";
-
 
 // Dummy components for individual pages
 const FullAmc = () => <div>{<FullAmcs />}</div>;
@@ -45,7 +44,7 @@ function App() {
           <Route path="/project" element={<><Header /><KanbanBoardList /></>} />
           <Route path="/job-details" element={<JobDetails />} />
           <Route path="/invoice" element={<><Header /><Invoice /></>} />
-          <Route path="/addClients" element={<><Header /><AddClient /></>} />
+          <Route path="/adduser" element={<><Header /><AddUser /></>} />
           <Route path="/addAmc" element={<><Header /><AddAMC /></>} />
 
           {/* Nested Routes for Report Section */}
