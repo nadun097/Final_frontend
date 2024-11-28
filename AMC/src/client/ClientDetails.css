@@ -1,0 +1,17 @@
+.client-container {
+    text-align: center;
+    padding: 100px 100px;
+    border-right: 1px solid #ccc;
+  }
+  
+  .client-avatar {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    margin-bottom: 15px;
+  }
+  
+  .client-name {
+    margin-bottom: 10px;
+  }
+  
