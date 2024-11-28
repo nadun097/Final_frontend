@@ -1,25 +1,49 @@
-import React, { useState } from 'react';
-import './Login.css';
-import { FaEnvelope, FaLock } from 'react-icons/fa';
-import { Link, useNavigate } from 'react-router-dom';
-import welcomeImage from '../assets/loginimage.png';
+import React, { useState } from "react";
+import { FaEnvelope, FaLock } from "react-icons/fa";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios"; // Import axios
+import "./Login.css";
+import welcomeImage from "../assets/loginimage.png";
 
-const Login = () => {
+function UserLogin() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
-  // State variables to store email and password
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const handleUserEmail = (event) => setEmail(event.target.value);
+  const handlePassword = (event) => setPassword(event.target.value);
 
-  const handleSignIn = (event) => {
+  const userLoginSubmit = async (event) => {
     event.preventDefault();
 
-    // Log the email and password for demonstration (replace with actual authentication logic)
-    console.log('Email:', email);
-    console.log('Password:', password);
+    const data = {
+      email,
+      password,
+    };
 
-    // Navigate to the home page after successful login
-    navigate('/home');
+    try {
+      const response = await axios.post(
+        `http://localhost:8083/api/user/login?email=${email}&password=${password}`
+      ); // Use axios.post
+
+      // Assuming the API returns the user's email upon successful login
+      const useremail = response.data.email;
+
+      // Save user email in sessionStorage
+      sessionStorage.setItem("useremail", useremail);
+
+      alert("Login successful");
+
+      // Navigate to the home page after successful login
+      navigate("/home");
+    } catch (error) {
+      if (error.response && error.response.status === 401) {
+        alert("Invalid email or password");
+      } else {
+        alert("Network error");
+        console.error(error);
+      }
+    }
   };
 
   return (
@@ -34,7 +58,7 @@ const Login = () => {
             <h2>Hello!</h2>
             <p>Sign in to your account</p>
           </div>
-          <form onSubmit={handleSignIn}>
+          <form onSubmit={userLoginSubmit}>
             <div className="input-container">
               <FaEnvelope className="input-icon" />
               <input
@@ -42,7 +66,7 @@ const Login = () => {
                 placeholder="Email"
                 required
                 value={email}
-                onChange={(e) => setEmail(e.target.value)} // Update state on input change
+                onChange={handleUserEmail}
               />
             </div>
             <div className="input-container">
@@ -52,7 +76,7 @@ const Login = () => {
                 placeholder="Password"
                 required
                 value={password}
-                onChange={(e) => setPassword(e.target.value)} // Update state on input change
+                onChange={handlePassword}
               />
             </div>
             <div className="forgot-password">
@@ -64,7 +88,7 @@ const Login = () => {
       </div>
     </div>
   );
-};
+}
 
-export default Login;
+export default UserLogin;
 
