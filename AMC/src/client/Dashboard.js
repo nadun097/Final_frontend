@@ -16,7 +16,7 @@ const Dashboard = () => {
       name: "Dua Lipa",
       contact: "+123456789",
       email: "dua.lipa@example.com",
-      profilePicture: "https://via.placeholder.com/100",
+     
     });
 
     const fetchCompanyData = () => ({
