@@ -1,10 +1,8 @@
 
 .add-amc-container {
-    max-width: 700px;
+    max-width: 1300px;
     margin: 50px auto;
     padding: 20px;
-    background: linear-gradient(135deg, #ece3f5, #e6dfef);
-    border: 1px solid #ddd;
     border-radius: 8px;
   }
   
@@ -15,12 +13,32 @@
     margin-top: 10px;
     font-family: Arial, sans-serif;
     color: #34283c;
+    
+  }
+
+  .add-amc-container th {
+    background-color: #cfaaff;
+    
+  }
+
+  .add-amc-container h2 {
+    font-size: 200%;
+    text-align: center;
+    margin-bottom: 20px;
+    margin-top: 10px;
+    font-family: Arial, sans-serif;
+    color: #34283c;
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    
   }
   
   .amc-form {
     display: flex;
     flex-wrap: wrap;
     gap: 30px;
+    background: linear-gradient(135deg, #ece3f5, #e6dfef);
+    border: 1px solid #ddd;
   }
   
   .amc-form .form-group1 {
@@ -73,7 +91,7 @@
   .submit-button:hover {
     background-color: #ddb4f9;
   }
-
+  
   .button-group {
     display: flex;
     gap: 10px;
@@ -135,5 +153,11 @@
   background-color: #ddb4f9;
 }
 
-  
+  .user-details-table{
+    background: linear-gradient(135deg, #faf5ff, #e6dfef);
+    border: 1px solid #dddddd;
+    padding: 10px;
+    border-radius: 10px;
+
+  }
   

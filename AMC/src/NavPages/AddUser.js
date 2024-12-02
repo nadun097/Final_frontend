@@ -15,7 +15,6 @@ const AddUser = () => {
   });
 
   const [popup, setPopup] = useState({ show: false, message: "", type: "" });
-  const [users, setUsers] = useState([]); // State to store all users
 
   // Fetch the next UserID on component load
   useEffect(() => {
@@ -30,18 +29,7 @@ const AddUser = () => {
     };
 
     fetchNextUserId();
-    fetchUsers(); // Fetch all users on component load
   }, []);
-
-  const fetchUsers = async () => {
-    try {
-      const response = await axios.get("http://localhost:8080/api/users");
-      setUsers(response.data); // Assuming response.data contains an array
-    } catch (error) {
-      console.error("Error fetching users:", error.message || error);
-    }
-  };
-  
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -53,7 +41,7 @@ const AddUser = () => {
 
     try {
       const { id, ...dataToSubmit } = userData; // Exclude UserID from payload
-      const response = await axios.post("http://localhost:8080/api/users", dataToSubmit);
+      const response = await axios.post("http://localhost:8080/api/users/user", dataToSubmit);
       const savedUser = response.data;
 
       showPopup("User added successfully!");
@@ -68,13 +56,12 @@ const AddUser = () => {
         address: savedUser.address,
         contact: savedUser.contact,
       });
-
-      fetchUsers(); // Refresh the user table after adding a user
     } catch (error) {
       console.error("Error adding user:", error);
       showPopup("There was an error adding the user!", "error");
     }
   };
+
 
   const handleClear = () => {
     setUserData({
@@ -99,6 +86,7 @@ const AddUser = () => {
   const handleCancel = () => {
     closePopup(); // Close the popup without clearing the form
   };
+  
 
   return (
     <div className="form-wrapper">
@@ -183,11 +171,12 @@ const AddUser = () => {
             Add User
           </button>
           <button type="button" className="clear-btn" onClick={handleClear}>
-            Clear
-          </button>
+              Clear
+            </button>
+
         </form>
       </div>
-      {/* Popup Message */}
+         {/* Popup Message */}
       {popup.show && (
         <div className={`popup-message ${popup.type}`}>
           <p>{popup.message}</p>
@@ -195,39 +184,11 @@ const AddUser = () => {
             OK
           </button>
           <button onClick={handleCancel} className="popup-button cancel-btn">
-            Cancel
-          </button>
+        Cancel
+      </button>
         </div>
       )}
 
-      {/* Table of Users */}
-      <div className="user-table-container">
-        <h2>All Users</h2>
-        <table className="user-table">
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Name</th>
-              <th>Email</th>
-              <th>Role</th>
-              <th>Address</th>
-              <th>Contact</th>
-            </tr>
-          </thead>
-          <tbody>
-            {users.map((user) => (
-              <tr key={user.id}>
-                <td>{user.id}</td>
-                <td>{user.name}</td>
-                <td>{user.email}</td>
-                <td>{user.role}</td>
-                <td>{user.address}</td>
-                <td>{user.contact}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
     </div>
   );
 };

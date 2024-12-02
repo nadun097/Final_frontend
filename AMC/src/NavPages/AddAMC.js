@@ -31,52 +31,24 @@ export default function AddAmc() {
         console.log("Clients Data:", responseClients.data);
         setClients(responseClients.data); // Set clients data in state
 
-         // Fetch AMC details for each client
+        // Fetch AMC details for each client
+        const amcPromises = responseClients.data.map(client =>
+          axios.get(`http://localhost:8080/api/addAmcs/clientDetails/${client.id}`)
+        );
 
-    const amcPromises = responseClients.data.map(client =>
+        const amcResponses = await Promise.all(amcPromises);
+        const allAmcDetails = amcResponses.map(res => res.data);
+        setAmcDetails(allAmcDetails);
 
+        const responseAmcId = await axios.get("http://localhost:8080/api/addAmcs/nextAmcId");
+        setFormData(prevData => ({ ...prevData, amcId: responseAmcId.data }));
+      } catch (error) {
+        console.error("Error fetching data:", error);
+        alert("Could not fetch data!");
+      }
+    };
 
-      axios.get(`http://localhost:8080/api/addAmcs/clientDetails/${client.id}`)
-
-
-    );
-
-
-
-    const amcResponses = await Promise.all(amcPromises);
-
-
-    const allAmcDetails = amcResponses.map(res => res.data);
-
-
-    setAmcDetails(allAmcDetails);
-
-
-
-    const responseAmcId = await axios.get("http://localhost:8080/api/addAmcs/nextAmcId");
-
-
-    setFormData(prevData => ({ ...prevData, amcId: responseAmcId.data }));
-
-
-
-  } catch (error) {
-
-
-    console.error("Error fetching data:", error);
-
-
-    alert("Could not fetch data!");
-
-
-  }
-
-
-};
-
-
-
-fetchData(); // Call the function to fetch data
+    fetchData(); // Call the function to fetch data
   }, []);
 
   const handleChange = (e) => {
@@ -91,68 +63,29 @@ fetchData(); // Call the function to fetch data
       const response = await axios.post("http://localhost:8080/api/addAmcs/addAmc", dataToSubmit);
 
       setPopup({ message: "AMC added successfully!", isOpen: true, isError: false });
+      console.log("AMC Details Submitted:", response.data);
 
-  console.log("AMC Details Submitted:", response.data);
+      // Reset the form, keeping the auto-generated amcId
+      setPopup({ message: "AMC added successfully!", isOpen: true, isError: false });
 
-
-  // Reset the form, keeping the auto-generated amcId
-
-  setPopup({ message: "AMC added successfully!", isOpen: true, isError: false });
-
-
-
-  setFormData({
-
-
-    amcId: formData.amcId,
-
-
-    user_id: "",
-
-
-    contractName: "",
-
-
-    category: "",
-
-
-    description: "",
-
-
-    startDate: "",
-
-
-    endDate: "",
-
-
-    cost: "",
-
-
-    companyName: "",
-
-
-    companyEmail: "",
-
-
-    companyPhone: "",
-
-
-    companyAddress: "",
-
-
-  });
-
-
-} catch (error) {
-
-
-  console.error("Error adding AMC:", error);
-
-
-  setPopup({ message: "There was an error adding the AMC.", isOpen: true, isError: true });
-
-
-}
+      setFormData({
+        amcId: formData.amcId,
+        user_id: "",
+        contractName: "",
+        category: "",
+        description: "",
+        startDate: "",
+        endDate: "",
+        cost: "",
+        companyName: "",
+        companyEmail: "",
+        companyPhone: "",
+        companyAddress: "",
+      });
+    } catch (error) {
+      console.error("Error adding AMC:", error);
+      setPopup({ message: "There was an error adding the AMC.", isOpen: true, isError: true });
+    }
   };
 
   const handleClear = () => {
@@ -184,104 +117,75 @@ fetchData(); // Call the function to fetch data
         <table>
           <thead>
             <tr>
-            <th>AMC ID</th>
+              <th>AMC ID</th>
               <th>User ID</th>
               <th>Name</th>
               <th>Email</th>
               <th>Phone</th>
-              <th>category</th>
+              <th>Category</th>
               <th>Contract Name</th>
               <th>Start Date</th>
               <th>End Date</th>
             </tr>
           </thead>
           <tbody>
-            {clients.map(client => (
-              <tr key={Amc.id}>
-                <td>{Amc.id}</td>
-                <td>{client.id}</td>
-                <td>{client.name}</td>
-                <td>{client.email}</td>
-                <td>{client.contact}</td>
-                <td>{amc.category}</td>
-                <td>{Amc.contractName}</td>
-                <td>{Amc.startDate}</td>
-                <td>{Amc.endDate}</td>
-              </tr>
-            ))}
+            {clients.map((client, index) => {
+              const amcDetail = amcDetails[index] || {};
+              return (
+                <tr key={client.id}>
+                  <td>{amcDetail.amcId || ""}</td>
+                  <td>{client.id}</td>
+                  <td>{client.name}</td>
+                  <td>{client.email}</td>
+                  <td>{client.contact}</td>
+                  <td>{amcDetail.category || ""}</td>
+                  <td>{amcDetail.contractName || ""}</td>
+                  <td>{amcDetail.startDate || ""}</td>
+                  <td>{amcDetail.endDate || ""}</td>
+                </tr>
+              );
+            })}
           </tbody>
         </table>
       </div>
 
       <form onSubmit={handleSubmit} className="amc-form">
+        {[
+          { label: "AMC Id", name: "amcId", type: "text", disabled: true },
+          { label: "Client Id", name: "user_id", type: "select", options: [{ value: "", label: "Select a client" }, ...clients.map(client => ({ value: client.id, label: `${client.id} - ${client.name}` }))] },
+          { label: "Contract Name", name: "contractName", type: "text" },
+          { label: "Category", name: "category", type: "select", options: [{ value: "WebApplication", label: "Web Application" }, { value: "MobileApplication", label: "Mobile Application" }, { value: "DesktopApplication", label: "Desktop Application" }, { value: "HybridApplication", label: "Hybrid Application" }] },
+          { label: "Description", name: "description", type: "textarea", rows: 4 },
+          { label: "Start Date", name: "startDate", type: "date" },
+          { label: "End Date", name: "endDate", type: "date" },
+          { label: "Cost", name: "cost", type: "number" },
+          { label: "Company Name", name: "companyName", type: "text" },
+          { label: "Company Email", name: "companyEmail", type: "email" },
+          { label: "Company Phone", name: "companyPhone", type: "tel" },
+          { label: "Company Address", name: "companyAddress", type: "text" },
+        ].map((field, index) => (
+          <div className="form-group" key={index}>
+            <label>{field.label}</label>
 
-{[
-
-  { label: "AMC Id", name: "amcId", type: "text", disabled: true },
-
-  { label: "Client Id", name: "user_id", type: "select", options: [{ value: "", label: "Select a client" }, ...clients.map(client => ({ value: client.id, label: `${client.id} - ${client.name}` }))] },
-
-  { label: "Contract Name", name: "contractName", type: "text" },
-
-  { label: "Category", name: "category", type: "select", options: [{ value: "WebApplication", label: "Web Application" }, { value: "MobileApplication", label: "Mobile Application" }, { value: "DesktopApplication", label: "Desktop Application" }, { value: "HybridApplication", label: "Hybrid Application" }] },
-
-  { label: "Description", name: "description", type: "textarea", rows: 4 },
-
-  { label: "Start Date", name: "startDate", type: "date" },
-
-  { label: "End Date", name: "endDate", type: "date" },
-
-  { label: "Cost", name: "cost", type: "number" },
-
-  { label: "Company Name", name: "companyName", type: "text" },
-
-  { label: "Company Email", name: "companyEmail", type: "email" },
-
-  { label: "Company Phone", name: "companyPhone", type: "tel" },
-
-  { label: "Company Address", name: "companyAddress", type: "text" },
-
-].map((field, index) => (
-
-  <div className="form-group" key={index}>
-
-    <label>{field.label}</label>
-
-    {field.type === "select" ? (
-
-      <select name={field.name} value={formData[field.name]} onChange={handleChange} required>
-
-        {field.options.map((option, i) => (
-
-          <option key={i} value={option.value}>
-
-            {option.label}
-
-          </option>
-
+            {field.type === "select" ? (
+              <select name={field.name} value={formData[field.name]} onChange={handleChange} required>
+                {field.options.map((option, i) => (
+                  <option key={i} value={option.value}>
+                    {option.label}
+                  </option>
+                ))}
+              </select>
+            ) : field.type === "textarea" ? (
+              <textarea name={field.name} value={formData[field.name]} onChange={handleChange} rows={field.rows} required />
+            ) : (
+              <input type={field.type} name={field.name} value={formData[field.name]} onChange={handleChange} disabled={field.disabled} required />
+            )}
+          </div>
         ))}
 
-      </select>
-
-    ) : field.type === "textarea" ? (
-
-      <textarea name={field.name} value={formData[field.name]} onChange={handleChange} rows={field.rows} required />
-
-    ) : (
-
-      <input type={field.type} name={field.name} value={formData[field.name]} onChange={handleChange} disabled={field.disabled} required />
-
-    )}
-
-  </div>
-
-))}
-
-<button type="submit" className="submit-button">Submit</button>
-
-<button type="button" className="clear-button" onClick={handleClear}>Clear</button>
-
-</form>
+        <button type="submit" className="submit-button">Submit</button>
+        <button type="button" className="clear-button" onClick={handleClear}>Clear</button>
+      </form>
 
       {popup.isOpen && (
         <div className="popup">
