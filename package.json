@@ -10,7 +10,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "cors": "^2.8.5",
-    "react-scripts": "^5.0.1"
+    "bootstrap": "^5.3.3"
   }
 }

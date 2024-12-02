@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Header from "./Header";
+import Header from "./Header2";
 import ClientDetails from "./ClientDetails";
 import CompanyDetails from "./CompanyDetails";
 import ProjectDetails from "./ProjectDetails";
@@ -16,7 +16,7 @@ const Dashboard = () => {
       name: "Dua Lipa",
       contact: "+123456789",
       email: "dua.lipa@example.com",
-      profilePicture: "https://via.placeholder.com/100",
+     
     });
 
     const fetchCompanyData = () => ({

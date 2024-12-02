@@ -82,7 +82,7 @@ textarea::placeholder {
 
 
 .submit-btn {
-  background-color: #cf88f5;
+  background-color: #652a89;
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   color: white;
   border: none;
@@ -94,8 +94,87 @@ textarea::placeholder {
 }
 
 .submit-btn:hover {
-  background-color: #f1783c;
+  background-color: #ddb4f9 ;
 }
+.button-group {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.clear-btn {
+  background-color: #861814;
+  font-family: 'Trebuchet MS', Arial, sans-serif;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.clear-btn:hover {
+  background-color:#ff6f61;
+}
+
+.popup-message {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  border-radius: 10px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+  width: 350px;
+  height: 120px;
+}
+
+.popup-message p {
+  margin-bottom: 15px;
+  font-size: 16px;
+}
+
+.popup-message.success {
+  border: 2px solid  #c28ee5;
+}
+
+.popup-message.error {
+  border: 2px solid #c21c1c;
+}
+.popup-actions {
+  display: flex;
+  justify-content: space-between; /* Creates even spacing between buttons */
+  gap: 25px; /* Adds space between the buttons */
+}
+
+.popup-button {
+  background-color:#652a89;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 5px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.3s;
+  width:30%;
+  margin: 0 10px;
+}
+
+.popup-button:hover {
+  background-color: #ff6f61;
+}
+.cancel-btn {
+  background-color:  #861814;
+}
+
+.cancel-btn:hover {
+  background-color: #ff6f61;
+}
+
 
 /* Responsive Design */
 @media (max-width: 480px) {
@@ -103,4 +182,68 @@ textarea::placeholder {
     width: 90%;
     padding: 15px;
   }
+}
+
+
+.user-table-container {
+  padding: 20px;
+  max-width: 900px;
+  margin: auto;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.user-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+.user-table th,
+.user-table td {
+  padding: 12px;
+  border: 1px solid #ddd;
+  text-align: left;
+}
+
+.user-table th {
+  background-color: #007bff;
+  color: white;
+}
+
+.user-table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.error-message {
+  color: red;
+  text-align: center;
+}
+.user-details-table {
+  margin-top: 20px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 8px;
+  text-align: left;
+  border: 1px solid #ddd;
+}
+
+th {
+  background-color: #f4f4f4;
+}
+
+tr:hover {
+  background-color: #f1f1f1;
 }
