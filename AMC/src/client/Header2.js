@@ -1,5 +1,6 @@
 import React from "react";
-import "./Header.css";
+import "./Header2.css";
+
 import imageSrc from "../assets/werfdew.jpg.png";
 
 const Header = () => {

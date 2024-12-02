@@ -1,7 +1,9 @@
- import React from "react";
-  import './Home.css';
+import React from "react";
+import { Link } from "react-router-dom";
+import './Home.css';
 
-  import firstGraph from '../assets/firstGraph.png';
+
+import firstGraph from '../assets/firstGraph.png';
 import secondGraph from '../assets/secondGraph.jpg';
 import lastGraph from '../assets/lastGraph.png';
 import dataGraph from '../assets/dataGraph.png';
@@ -9,7 +11,15 @@ import dataGraph from '../assets/dataGraph.png';
     function Home() {
       return (
         <div className="dashboard">
+
+          <div className="dashboard-header">
+        {/* Back Link */}
+        <Link to="/login" className="back-link">
+          ←
+        </Link>
+          
           <h2 className="dashboard-title">Dashboard</h2>
+          </div>
     
           <div className="dashboard-container">
             {/* Left Column: Metrics Section */}

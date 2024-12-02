@@ -1,21 +1,25 @@
 import React from "react";
 import "./App.css";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+
+// Components
 import Header from "./component/Header";
+import Header2 from "./client/Header2";
+
+import AMCnavbar from "./component/AMCnavbar";
+import Login from "./NavPages/Login";
 import Home from "./NavPages/Home";
 import KanbanBoardList from "./NavPages/KanbanBoardList";
 import Invoice from "./NavPages/Invoice";
 import AddUser from "./NavPages/AddUser";
 import AddAMC from "./NavPages/AddAMC";
-import AMCnavbar from "./component/AMCnavbar";
-import Login from "./NavPages/Login";
 import JobDetails from "./NavPages/JobDetails";
-
+import Dashboard from "./client/Dashboard"; // Ensure correct path
 import VerifyCode from "./component/VerifyCode";
 import LandingPage from "./LandingPage";
-
 import ForgotPassword from "./component/ForgotPassword";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
+// Reports
 import FullAmcs from "./NavbarReports/FullAmc.js";
 import AmcPayments from "./NavbarReports/AmcPayment.js";
 import ClientWiseAmcs from "./NavbarReports/ClientWiseAmcs.js";
@@ -23,7 +27,7 @@ import AmcClientDetails from "./NavbarReports/AmcClientDetails.js";
 import RenewalAmcs from "./NavbarReports/RenewalAmcs.js";
 import ScheduledAmcs from "./NavbarReports/ScheduledAmcs.js";
 
-// Dummy components for individual pages
+// Dummy components for reports
 const FullAmc = () => <div>{<FullAmcs />}</div>;
 const AmcPayment = () => <div>{<AmcPayments />}</div>;
 const ClientWiseAmc = () => <div>{<ClientWiseAmcs />}</div>;
@@ -46,7 +50,8 @@ function App() {
           <Route path="/invoice" element={<><Header /><Invoice /></>} />
           <Route path="/adduser" element={<><Header /><AddUser /></>} />
           <Route path="/addAmc" element={<><Header /><AddAMC /></>} />
-
+          <Route path="/ProjectDetail" element={<Dashboard />} />
+          
           {/* Nested Routes for Report Section */}
           <Route
             path="/report/*"
@@ -55,7 +60,7 @@ function App() {
                 <Header />
                 <AMCnavbar />
                 <Routes>
-                <Route path="/" element={<FullAmc />} />
+                  <Route path="/" element={<FullAmc />} />
                   <Route path="fullAmc" element={<FullAmc />} />
                   <Route path="amcPayment" element={<AmcPayment />} />
                   <Route path="clientWiseAmc" element={<ClientWiseAmc />} />
@@ -73,4 +78,3 @@ function App() {
 }
 
 export default App;
-

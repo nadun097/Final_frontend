@@ -1,14 +1,34 @@
 .dashboard {
   padding: 20px;
+
+}
+.dashboard-header {
+  display: flex;
+  align-items: center; /* Vertically aligns items */
+  gap: 10px; /* Adds space between the back link and the title */
 }
 
 .dashboard-title {
   font-size: 30px;
-  text-align: left;
+  text-align: center;
   font-weight: bold;
   margin-bottom: px;
   color: #333333;
+  
 }
+
+.back-link {
+  text-decoration: none;
+  color: #333;
+  font-size: 30px;
+  margin-top: -20px;
+  margin-left: 10px;
+  display: inline-block;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+
 
 .dashboard-container {
   display: flex;

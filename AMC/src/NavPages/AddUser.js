@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./AddUser.css";
@@ -14,6 +13,8 @@ const AddUser = () => {
     address: "",
     contact: "",
   });
+
+  const [popup, setPopup] = useState({ show: false, message: "", type: "" });
 
   // Fetch the next UserID on component load
   useEffect(() => {
@@ -42,7 +43,8 @@ const AddUser = () => {
       const { id, ...dataToSubmit } = userData; // Exclude UserID from payload
       const response = await axios.post("http://localhost:8080/api/users/user", dataToSubmit);
       const savedUser = response.data;
-      alert("User added successfully!");
+
+      showPopup("User added successfully!");
 
       // Update the form with returned user details
       setUserData({
@@ -56,9 +58,35 @@ const AddUser = () => {
       });
     } catch (error) {
       console.error("Error adding user:", error);
-      alert("There was an error adding the user!");
+      showPopup("There was an error adding the user!", "error");
     }
   };
+
+
+  const handleClear = () => {
+    setUserData({
+      id: userData.id, // Preserve the auto-generated UserID
+      name: "",
+      password: "",
+      role: "",
+      email: "",
+      address: "",
+      contact: "",
+    });
+  };
+
+  const showPopup = (message, type) => {
+    setPopup({ show: true, message, type });
+  };
+
+  const closePopup = () => {
+    setPopup({ show: false, message: "", type: "" });
+  };
+
+  const handleCancel = () => {
+    closePopup(); // Close the popup without clearing the form
+  };
+  
 
   return (
     <div className="form-wrapper">
@@ -142,8 +170,25 @@ const AddUser = () => {
           <button type="submit" className="submit-btn">
             Add User
           </button>
+          <button type="button" className="clear-btn" onClick={handleClear}>
+              Clear
+            </button>
+
         </form>
       </div>
+         {/* Popup Message */}
+      {popup.show && (
+        <div className={`popup-message ${popup.type}`}>
+          <p>{popup.message}</p>
+          <button onClick={closePopup} className="popup-button">
+            OK
+          </button>
+          <button onClick={handleCancel} className="popup-button cancel-btn">
+        Cancel
+      </button>
+        </div>
+      )}
+
     </div>
   );
 };
