@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import "./ForgotPassword.css";
-import logo from "../assets/forpass1.png"; // Ensure the path to your logo is correct
+import logo from "../assets/forpass1.png";
 
 const ForgotPassword = () => {
   const [email, setEmail] = useState('');
@@ -12,10 +12,9 @@ const ForgotPassword = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-
     try {
-      const response = await axios.post('http://localhost:8080/api/forgot-password', { email });
-
+      const response = await axios.post('http://localhost:8084/api/forgot-password', { email });
+    
       if (response.status === 200) {
         setMessage('A verification code has been sent to your email address.');
         setError('');

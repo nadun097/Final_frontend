@@ -2,68 +2,60 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import "./VerifyCode.css";
-import logo from "../assets/verify.png"; // Ensure the path to your logo is correct
+import logo from "../assets/verify.png";
 
 const VerifyCode = () => {
-  const [code, setCode] = useState(["", "", "", "", "", ""]); // Array for 6-digit code
+  const [code, setCode] = useState(["", "", "", "", "", ""]);
+  const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
   const handleInputChange = (value, index) => {
-    const newCode = [...code];
-    newCode[index] = value;
-    setCode(newCode);
-
-    // Move focus to the next input if a value is entered
-    if (value && index < code.length - 1) {
-      document.getElementById(`input-${index + 1}`).focus();
+    if (/^[0-9]*$/.test(value)) {
+      const newCode = [...code];
+      newCode[index] = value;
+      setCode(newCode);
+      if (value && index < code.length - 1) document.getElementById(`input-${index + 1}`).focus();
     }
   };
 
   const handleKeyDown = (e, index) => {
-    // Handle backspace to move focus to previous input
-    if (e.key === "Backspace" && !code[index] && index > 0) {
+    if (e.key === "Backspace" && index > 0 && !code[index]) {
       document.getElementById(`input-${index - 1}`).focus();
     }
   };
 
   const handleVerify = async (event) => {
     event.preventDefault();
-    const verificationCode = code.join(""); // Join the array to get the full code
     try {
-      const response = await axios.post('http://localhost:8080/api/verify-code', { code: verificationCode });
+      const verificationCode = code.join("");
+      const response = await axios.post('http://localhost:8084/api/verify-code', { email, code: verificationCode });
       if (response.status === 200) {
         setMessage('Code verified successfully! Redirecting...');
-        setError('');
-
-        // Redirect to the next page after verification
-        setTimeout(() => {
-          navigate('/reset-password'); // Adjust this route as needed
-        }, 2000); // Redirect after 2 seconds
+        setTimeout(() => navigate('/reset-password'), 2000);
       }
     } catch (err) {
-      setError('Invalid code. Please try again.');
-      setMessage('');
+     
+      setError(err.response?.data?.message || 'Invalid code. Please try again.');
     }
   };
 
-  const handleResendCode = () => {
-    // Logic to resend the verification code
-    alert("Verification code has been resent to your email."); // Placeholder alert
-    // You can implement the actual resend logic here, e.g., calling an API
+  const handleResendCode = async () => {
+    try {
+      await axios.post('http://localhost:8084/api/resend-code');
+      alert("Verification code has been resent to your email.");
+    } catch (err) {
+      alert("Failed to resend the code. Please try again.");
+    }
   };
 
   return (
     <div className="verify-code-page">
       <div className="verify-code-container">
-        <div className="icon">
-          <img src={logo} alt="Logo Icon" />
-        </div>
-        <h2 className="verify-code-heading">Enter Verification Code</h2>
-        <p className="verify-code-description">
-          Enter the 6-digit code sent to your email to proceed.
-        </p>
+        <img src={logo} alt="Verification Icon" />
+        <h2>Enter Verification Code</h2>
+        <p>Enter the 6-digit code sent to your email to proceed.</p>
         <form onSubmit={handleVerify}>
           <div className="code-inputs">
             {code.map((digit, index) => (
@@ -79,15 +71,11 @@ const VerifyCode = () => {
               />
             ))}
           </div>
-          <button type="submit" className="confirm-button">
-            Verify Code
-          </button>
+          <button type="submit" className="confirm-button">Verify Code</button>
           {message && <p className="success-message">{message}</p>}
           {error && <p className="error-message">{error}</p>}
         </form>
-        <button onClick={handleResendCode} className="resend-link">
-          Resend Code
-        </button>
+        <button onClick={handleResendCode} className="resend-link">Resend Code</button>
       </div>
     </div>
   );
