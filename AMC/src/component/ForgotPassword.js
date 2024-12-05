@@ -1,15 +1,30 @@
-
-import React from "react";
+import React, { useState } from "react";
+import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import "./ForgotPassword.css";
 import logo from "../assets/forpass1.png";
 
 const ForgotPassword = () => {
+  const [email, setEmail] = useState('');
+  const [message, setMessage] = useState('');
+  const [error, setError] = useState('');
   const navigate = useNavigate();
 
-  const handleSendEmail = (e) => {
-    e.preventDefault();
-    navigate("/verify-code"); 
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    try {
+      const response = await axios.post('http://localhost:8084/api/forgot-password', { email });
+    
+      if (response.status === 200) {
+        setMessage('A verification code has been sent to your email address.');
+        setError('');
+        setTimeout(() => navigate('/verify-code'), 2000); // Delay for 2 seconds before navigating
+      }
+    } catch (err) {
+      const errorMsg = err.response?.data?.message || 'Failed to send verification code. Please try again.';
+      setError(errorMsg);
+      setMessage('');
+    }
   };
 
   return (
@@ -18,19 +33,23 @@ const ForgotPassword = () => {
         <img src={logo} alt="Logo" className="forgot-password-logo" />
         <h2>Forgot your password?</h2>
         <p>Enter your email address to reset your password.</p>
-        <form className="forgot-password-form" onSubmit={handleSendEmail}>
+        <form className="forgot-password-form" onSubmit={handleSubmit}>
           <div className="input-group">
             <input
               type="email"
               placeholder="Email"
               className="forgot-password-input"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               required
             />
           </div>
           <button type="submit" className="forgot-password-button">
-            Send Email
+            Send Verification Code
           </button>
         </form>
+        {message && <p className="success-message">{message}</p>}
+        {error && <p className="error-message">{error}</p>}
         <a href="/login" className="forgot-password-back-link">
           &larr; Back to Login
         </a>
