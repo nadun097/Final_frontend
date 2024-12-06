@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 // Components
 import Header from "./component/Header";
 import Header2 from "./client/Header2";
-
+import PasswordReset  from  "./component/PasswordReset";
 import AMCnavbar from "./component/AMCnavbar";
 import Login from "./NavPages/Login";
 import Home from "./NavPages/Home";
@@ -44,6 +44,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/verify-code" element={<VerifyCode />} />
+          <Route path="/password-reset" element={<PasswordReset />} />
           <Route path="/home" element={<><Header /><Home /></>} />
           <Route path="/project" element={<><Header /><KanbanBoardList /></>} />
           <Route path="/job-details" element={<JobDetails />} />
