@@ -1,21 +1,25 @@
 import React, { useState } from "react";
-// import "./PasswordReset.css";
+import axios from "axios";
 
 const PasswordReset = () => {
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
-  const [message, setMessage] = useState('');
-  const [error, setError] = useState('');
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [message, setMessage] = useState("");
+  const [error, setError] = useState("");
 
   const handleReset = async (event) => {
     event.preventDefault();
+
     if (password !== confirmPassword) {
       setError("Passwords do not match.");
       return;
     }
+
     try {
-      // Replace with your backend API endpoint
-      const response = await axios.post('http://localhost:8080/api/reset-password', { password });
+      const response = await axios.post(
+        "http://localhost:8080/api/reset-password",
+        { password }
+      );
       if (response.status === 200) {
         setMessage("Password reset successfully! You can now log in.");
       }
