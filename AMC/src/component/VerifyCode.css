@@ -1,70 +1,193 @@
+/* Base styles */
+.verify-code-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #f9f9f9;
+  margin: 0;
+  box-sizing: border-box;
+  padding: 20px;
+}
+
 .verify-code-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background-color: #f9f9f9;
-  }
+  width: 100%;
+  max-width: 500px;
+  padding: 20px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.15);
+  text-align: center;
+}
+
+.verify-code-container .icon img {
+  width: 50px; /* Adjusted for better visibility */
+  height: auto;
+  margin-bottom: 1.5rem;
+}
+
+.verify-code-heading {
+  font-size: 1.5rem;
+  color: #9b6bfc;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.verify-code-description {
+  font-size: 0.875rem;
+  color: #666;
+  margin-bottom: 20px;
+}
+
+.code-inputs {
+  display: flex;
+  justify-content: center;
+  gap: 15px; /* Adjusted gap for responsiveness */
+  margin-bottom: 20px;
+}
+
+.code-input {
+  width: 40px;
+  height: 40px;
+  text-align: center;
+  font-size: 1rem;
+  border: 1px solid #d1d1d1;
+  border-radius: 8px;
+  outline: none;
+  transition: 0.2s;
+}
+
+.code-input:focus {
+  border-color: #9b6bfc;
+  box-shadow: 0 0 4px rgba(122, 98, 216, 0.5);
+}
+
+.confirm-button {
+  width: 100%;
+  max-width: 300px;
+  padding: 10px;
+  background: linear-gradient(to right, #9b6bfc, #9b6bfc);
+  color: #fff;
+  font-size: 1rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+.confirm-button:hover {
+  opacity: 0.9;
+}
+
+.resend-link {
+  background: none;
+  border: none;
+  color: #9b6bfc;
+  font-size: 0.875rem;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.success-message {
+  color: #28a745;
+  font-size: 0.875rem;
+  margin-top: 10px;
+}
+
+.error-message {
+  color: #dc3545;
+  font-size: 0.875rem;
+  margin-top: 10px;
+}
+
+.verify-code-square {
+  width: 50px;
+  height: 50px;
+  margin: 5px;
+  border-radius: 10px;
+  margin-bottom: 20px;
   
-  .verify-code-box {
-    text-align: center;
-    background: white;
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    width: 400px;
+}
+
+.verify-code-back-link {
+  display: block;
+  margin-top: 20px; /* Adjusted for the 20px shift down */
+  color: #9b6bfc;
+  text-decoration: none;
+  font-size: 1rem;
+}
+
+.forgot-password-back-link {
+  display: block;
+  margin-top: 20px; /* Adjusted for the 20px shift down */
+  color: #9b6bfc;
+  text-decoration: none;
+  font-size: 1rem;
+}
+
+
+.forgot-password-back-link {
+  display: block;
+  margin-top: 1.5rem;
+  color: #9b6bfc;
+  text-decoration: none;
+  font-size: 1rem;
+
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .verify-code-container {
+    padding: 15px;
+    border-radius: 8px;
   }
-  
-  .verify-code-logo {
-    width: 80px;
-    margin-bottom: 20px;
+
+  .verify-code-heading {
+    font-size: 1.25rem;
   }
-  
-  .verify-code-form .input-group {
-    margin-bottom: 20px;
+
+  .code-inputs {
+    gap: 10px;
   }
-  
-  .verify-code-input {
-    width: 100%;
+
+  .code-input {
+    width: 35px;
+    height: 35px;
+    font-size: 0.875rem;
+  }
+
+  .confirm-button {
+    font-size: 0.875rem;
+  }
+
+  .forgot-password-back-link {
+    font-size: 0.875rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .verify-code-container {
+    width: 90%;
     padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    font-size: 16px;
   }
-  
-  .verify-code-button {
-    width: 100%;
-    padding: 10px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    font-size: 16px;
-    cursor: pointer;
+
+  .verify-code-heading {
+    font-size: 1rem;
   }
-  
-  .verify-code-button:hover {
-    background-color: #0056b3;
+
+  .code-input {
+    width: 30px;
+    height: 30px;
+    font-size: 0.75rem;
   }
-  
-  .success-message {
-    color: green;
-    margin-top: 10px;
+
+  .confirm-button {
+    font-size: 0.75rem;
+    padding: 8px;
   }
-  
-  .error-message {
-    color: red;
-    margin-top: 10px;
+
+  .forgot-password-back-link {
+    font-size: 0.75rem;
   }
-  
-  .verify-code-back-link {
-    display: block;
-    margin-top: 20px;
-    color: #007bff;
-    text-decoration: none;
-  }
-  
-  .verify-code-back-link:hover {
-    text-decoration: underline;
-  }
-  
+}
+

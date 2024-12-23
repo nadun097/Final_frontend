@@ -1,31 +1,33 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import "./VerifyCode.css";
 
 const VerifyCode = () => {
-  const [email, setEmail] = useState(""); // Add this line to define the email state
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  // Use the email from the location state or an empty string as a fallback
+  const [email, setEmail] = useState(location.state?.email || "");
   const [code, setCode] = useState("");
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
-  const navigate = useNavigate();
 
   const handleVerify = async (event) => {
     event.preventDefault();
     try {
       const response = await axios.post("http://localhost:8080/api/verify-code", {
-        email, // Make sure email is included here
+        email,
         code,
       });
 
       if (response.status === 200) {
         setMessage("Code verified successfully! Redirecting...");
         setError("");
-        setTimeout(() => navigate("/password-reset"), 2000); // Delay before navigating
+        setTimeout(() => navigate("/password-reset", { state: { email } }), 2000);
       }
     } catch (err) {
-      const errorMsg =
-        err.response?.data?.message || "Invalid code. Please try again.";
+      const errorMsg = err.response?.data?.message || "Invalid code. Please try again.";
       setError(errorMsg);
       setMessage("");
     }
@@ -43,7 +45,7 @@ const VerifyCode = () => {
               placeholder="Enter Your Email"
               className="verify-code-input"
               value={email}
-              onChange={(e) => setEmail(e.target.value)} // Update email state
+              onChange={(e) => setEmail(e.target.value)}
               required
             />
           </div>
