@@ -3,7 +3,8 @@ import axios from "axios";
 import { useLocation, useNavigate } from "react-router-dom";
 import "./ForgotPassword.css";
 import "./VerifyCode.css";
-import logo from "../assets/forpass1.png";
+import logo1 from "../assets/forpass1.png";
+import logo from "../assets/verify.png";
 
 const ForgotPasswordAndVerify = () => {
   const location = useLocation();
@@ -68,7 +69,7 @@ const ForgotPasswordAndVerify = () => {
       <div className="forgot-password-box">
         {step === "forgot" && (
           <>
-            <img src={logo} alt="Logo" className="forgot-password-logo" />
+            <img src={logo1} alt="Logo" className="forgot-password-logo" />
             <h2>Forgot your password?</h2>
             <p>Enter your email address to reset your password.</p>
             <form className="forgot-password-form" onSubmit={handleForgotPasswordSubmit}>
@@ -96,6 +97,9 @@ const ForgotPasswordAndVerify = () => {
 
         {step === "verify" && (
           <>
+
+<img src={logo} alt="Logo" className="forgot-password-logo" />
+
             <h2>Verify Your Code</h2>
             <p>A verification code was sent to <strong>{email}</strong>.</p>
             <form className="verify-code-form" onSubmit={handleVerifySubmit}>
@@ -117,7 +121,7 @@ const ForgotPasswordAndVerify = () => {
                 Verify Code
               </button>
             </form>
-            {message && <p className="success-message">{message}</p>}
+            {/* {message && <p className="success-message">{message}</p>} */}
             {error && <p className="error-message">{error}</p>}
             <a onClick={() => setStep("forgot")} className="verify-code-back-link">
               &larr; Back to Forgot Password
