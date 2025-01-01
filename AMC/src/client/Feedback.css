@@ -1,0 +1,130 @@
+
+
+.feedback-container {
+    width: 90%;
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 30px;
+    background-color: #fdf6f6;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    font-family: "Arial", sans-serif;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center horizontally */
+    justify-content: center; /* Center vertically */
+    height: 500px; /* Increased height */
+    position: relative; /* Position relative to place the backlink at the bottom */
+  }
+  
+  .feedback-container h2 {
+    text-align: center;
+    color: #120a16;
+    font-size: 28px;
+    margin-bottom: 30px;
+  }
+  
+  .feedback-form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 500px;
+  }
+  
+  .form-group {
+    margin-bottom: 20px;
+  }
+  
+  label {
+    font-size: 16px;
+    color: #333;
+    font-weight: bold;
+  }
+  
+  .input-field {
+    width: 100%; /* Input fields should take up 100% of the available width */
+    padding: 12px;
+    margin-top: 8px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    font-size: 16px;
+    box-sizing: border-box;
+  }
+  
+  .input-field:focus {
+    border-color: #6a1b9a;
+    outline: none;
+  }
+  
+  .submitf-button {
+    width: 90%; /* Make buttons the same width as input fields */
+    padding: 12px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 20px; /* Same margin for both buttons */
+  }
+  
+  .submitf-button {
+    background-color: #8e44ad;
+    color: white;
+    border: none;
+  }
+  
+  .submitf-button:hover {
+    background-color: #6a1b9a;
+  }
+  
+  .response-message {
+    text-align: center;
+    font-size: 18px;
+    margin-top: 20px;
+    color: #28a745;
+  }
+  
+  .backlink {
+    position: absolute; /* Position the link at the bottom */
+    bottom: 10px; /* Increased space from the bottom of the container */
+    left: 50%; /* Center it horizontally */
+    transform: translateX(-50%); /* Adjust for exact center */
+    display: inline-flex;
+    align-items: center;
+    color: #8e44ad;
+    font-size: 16px;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  
+  .backlink:hover {
+    color: #6a1b9a;
+  }
+  
+  .backlink i {
+    margin-right: 8px; /* Adds space between the arrow and the text */
+  }
+  
+  @media screen and (max-width: 768px) {
+    .feedback-container {
+      padding: 20px;
+      width: 90%;
+      height: 600px; /* Increased height for mobile */
+    }
+  
+    .feedback-container h2 {
+      font-size: 24px;
+    }
+  
+    .input-field {
+      padding: 10px;
+      font-size: 14px;
+    }
+  
+    .submitf-button,
+    .backlink {
+      padding: 10px 15px;
+      font-size: 14px;
+    }
+  }
+  

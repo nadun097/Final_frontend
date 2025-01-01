@@ -1,83 +1,170 @@
+
 import React, { useState, useEffect } from "react";
-import Header from "./Header2";
-import ClientDetails from "./ClientDetails";
-import CompanyDetails from "./CompanyDetails";
-import ProjectDetails from "./ProjectDetails";
+import { useNavigate } from "react-router-dom";
 import "./Dashboard.css";
+import "./CompanyDetails.css";
+import "./ClientDetails.css";
+import "./ClientHeader.css";
+import "./ProjectDetails.css";
+import pic from '../assets/avatar.png';
+import imageSrc from "../assets/werfdew.jpg.png";
 
 const Dashboard = () => {
-  const [clientData, setClientData] = useState(null);
-  const [companyData, setCompanyData] = useState(null);
-  const [selectedProject, setSelectedProject] = useState(null);
+ 
+  const [data, setData] = useState(null);
+  const email = localStorage.getItem('email');
+  const navigate = useNavigate();
+  
 
+ 
   useEffect(() => {
-    const fetchClientData = () => ({
-      id: "C123",
-      name: "Dua Lipa",
-      contact: "+123456789",
-      email: "dua.lipa@example.com",
-     
-    });
-
-    const fetchCompanyData = () => ({
-      name: "ABC Software Solutions",
-      email: "info@abcsoftware.com",
-      phone: "+987654321",
-      address: "123 Tech Park, Silicon Valley, CA",
-      projects: [
+    const fetchDetails = async () => {
+      if (!email) {
+        console.error("No email found in localStorage");
+        return;
+      }
+      
+      try {
+        const response = await fetch(`http://localhost:8080/api/users/client-company-details/${email}`);
+        if(!response.ok)
         {
-          name: "Project Alpha",
-          description: "A web application redesign project.",
-          startDate: "2023-01-01",
-          endDate: "2023-12-31",
-        },
-        {
-          name: "Project Beta",
-          description: "A mobile app development project.",
-          startDate: "2023-06-01",
-          endDate: "2024-06-01",
-        },
-      ],
-    });
+          console.error("HTTP ERROR:", response.status);
+          throw new Error ('Network response was not ok');
+        }
+        const result = await response.json();
+        console.log(result);
 
-    const client = fetchClientData();
-    setClientData(client);
+        setData({
+          client: result.clientDetails,
+          company: result.companyDetails,
+        });
 
-    const company = fetchCompanyData();
-    setCompanyData(company);
-  }, []);
+      } catch (error) {
+        console.error("Error fetching client data:", error);
+        setData({ error: "Unable to load data. Please check your connection." });
+      }
+    };
 
-  if (!clientData || !companyData) {
+    fetchDetails();
+  }, [email]);
+
+ 
+  if (!data || !data.client || !data.company || data.company.length ===0) {
     return <div>Loading...</div>;
   }
 
-  if (selectedProject) {
-    return (
-      <div>
-        <Header />
-        <ProjectDetails
-          project={selectedProject}
-          onBack={() => setSelectedProject(null)}
-        />
-      </div>
-    );
-  }
+  const uniqueCompanies = Array.from(
+    data.company.reduce((map, company) => {
+      const existing = map.get(company.companyName) || {
+        companyDetails: company,
+        contracts: [],
+      };
+      existing.contracts.push(company.companyContract);
+      map.set(company.companyName, existing);
+      return map;
+    }, new Map()).values()
+  );
+
+  const handleContractClick = (contract) => {
+    navigate(`/project-details/${contract}`);
+  };
 
   return (
     <>
-      <Header />
-      <div className="dashboard">
+      <ClientHeader />
+      <div className="dashboard1">
         <div className="left-panel">
-          <ClientDetails client={clientData} />
+          <ClientDetails client={data.client} />
         </div>
-        <div className="right-panel">
-          <CompanyDetails
-            company={companyData}
-            onProjectClick={setSelectedProject}
-          />
+        <div className="right-panel">    
+      
+        {uniqueCompanies.map((entry, index) => (
+            <CompanyDetails
+              key={index}
+              company={entry.companyDetails}
+              contracts={entry.contracts}
+              onContractClick={handleContractClick}
+            />
+          ))}
+
+
         </div>
       </div>
     </>
+  );
+};
+
+const ClientHeader = () => (
+  <header className="header">
+    <div className="logo-container">
+      <img src={imageSrc} alt="nexasoft logo" className="logo" />
+    </div>
+    <div className="right-section">
+      <p className="icon notification-icon">🔔</p>
+      <img
+        src="https://via.placeholder.com/30"
+        alt="profile"
+        className="profile-icon"
+      />
+    </div>
+  </header>
+);
+
+const CompanyDetails = ({ company,contracts,onContractClick}) => {
+  return (
+    <div className="company-container">
+      <h2 className="company-name">{company.companyName}</h2>
+      <div className="com-details">
+        <p>
+          <strong>Email:</strong> {company.companyEmail}
+        </p>
+        <p>
+          <strong>Phone:</strong> {company.companyContact}
+        </p>
+        <p>
+          <strong>Address:</strong> {company.companyAddress}
+        </p>
+        <p>
+          <strong>Contracts:</strong>
+        </p>
+        <ul>
+          {contracts.map((companyContract, index) => (
+            <li
+              key={index}
+              className="contract-link"
+                onClick={()=> onContractClick(companyContract)}>
+              {companyContract}
+            </li>
+          ))}
+        </ul>
+       
+      </div>
+    </div>
+  );
+};
+
+const ClientDetails = ({ client }) => {
+  return (
+    <div className="client-container">
+      <img
+        src={pic}
+        alt="Client Avatar"
+        className="client-avatar"
+      />
+    
+      <p>
+        <strong>ID:</strong> {client.id || "N/A"}
+      </p>
+      <p>
+        <strong>Name:</strong> {client.name || "N/A"}
+      </p>
+      <p>
+        <strong>Email:</strong> {client.email || "N/A"}
+      </p>
+      <p>
+        <strong>Contact:</strong> {client.contact || "N/A"}
+      </p>
+    </div>
   );
 };
 

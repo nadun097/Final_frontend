@@ -1,23 +1,43 @@
 .company-container {
   margin-top: 20px;
     padding: 20px;
-    margin-left: 70px;
+    
   }
   
   .company-name {
     margin-top: 20px;
     margin-bottom: 10px;
     margin-left: 50px;
+    font-size: 250%;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  }
+  .com-details{
+    margin-top: 60px;
+    font-size: 130%;
+    line-height: 1.4;
+    font-family:'Times New Roman', Times, serif;  
   }
 
-  pro {
-    margin-top: 20px;
-    margin-bottom: 50px;
-    margin-left: 70px;
+  .projects{
+    margin-top: 60px;
   }
   
   ul {
-    list-style-type: disc;
-    padding-left: 20px;
+    margin-top: 10px;
+    list-style-type:circle;
+    margin-left: 43%;
+    max-width: 150px;
+    
   }
   
+  .contract-link {
+    color: #bd88fd; /* A blue color for links */
+    text-decoration: underline;
+    cursor: pointer; /* Changes cursor to pointer to indicate clickability */
+    transition: color 0.3s;
+    
+  }
+  
+  .contract-link:hover {
+    color: #f5b85d; /* A darker blue for hover effect */
+  }

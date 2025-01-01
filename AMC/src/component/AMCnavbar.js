@@ -13,11 +13,11 @@ export default function AMCnavbar() {
    
     "CLIENT WISE AMC ": "/report/clientWiseAmc",
    
-    "AMC CLIENT DETAILS ": "/report/amcClientDetails",
+    // "AMC CLIENT DETAILS ": "/report/amcClientDetails",
    
-    "RENEWAL AMCs ": "/report/renewalAmcs",
+    // "RENEWAL AMCs ": "/report/renewalAmcs",
     
-    "SCHEDULED AMC ": "/report/scheduledAmc",
+    // "SCHEDULED AMC ": "/report/scheduledAmc",
  
   };
 

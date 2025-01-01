@@ -10,6 +10,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "bootstrap": "^5.3.3"
+    "bootstrap": "^5.3.3",
+    "jspdf": "^2.5.2",
+    "jspdf-autotable": "^3.8.4"
   }
 }

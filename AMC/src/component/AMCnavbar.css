@@ -1,29 +1,26 @@
 
-
-.header-nav1 {
+ .header-nav1 {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding:15px 30px;
+  align-items: center; /* Vertically center content */
+  justify-content: center; /* Horizontally center the nav items */
+  padding: 15px 30px;
   background: linear-gradient(90deg, #e6d4fc, #fdead1, #e0c9fc);
   color: #fff;
   font-family: Arial, sans-serif;
   font-weight: bold;
-  width: auto;
+  width: 100%; /* Ensure the header spans the full width */
 }
 
-
 .nav-page1 {
-  list-style: none; 
+  list-style: none;
   display: flex;
   gap: 30px;
   margin: 0;
   padding: 0;
-  justify-content: center; 
 }
 
 .nav-page1 li {
-  position:relative;
+  position: relative;
   font-size: 14px;
   cursor: pointer;
   text-transform: uppercase;
@@ -32,18 +29,17 @@
   border-radius: 4px;
   transition: background-color 0.3s, color 0.3s, transform 0.3s;
   text-align: center;
-  margin-left: 5vw;
 }
 
 .nav-page1 li::after {
   content: "|"; 
   position: absolute;
-  right: -40%;
-  color: #a570d6; 
+  right: -20px; /* Adjust for spacing */
+  color: #a570d6;
 }
 
 .nav-page1 li:last-child::after {
-  content: "";
+  content: ""; /* Remove separator for the last item */
 }
 
 .nav-page1 li:hover {

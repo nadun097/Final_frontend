@@ -1,11 +1,11 @@
-.dashboard {
+ .dashboard {
   padding: 20px;
 
 }
 .dashboard-header {
   display: flex;
-  align-items: center; /* Vertically aligns items */
-  gap: 10px; /* Adds space between the back link and the title */
+  align-items: center; 
+  gap: 10px; 
 }
 
 .dashboard-title {
@@ -157,3 +157,33 @@ display: flex;
 flex-direction: column;
 flex-grow: 1;
 }
+
+
+.data-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+/* .feedback-item {
+  margin-bottom: 10px;
+  font-size: 14px;
+  color: #333;
+}  */
+
+
+.feedback-section {
+  max-height: 200px; /* Limit the height of the feedback section */
+  overflow-y: auto;  /* Enable vertical scrolling */
+  border: 2px solid #ddb4f9; /* Border to match the existing design */
+  border-radius: 8px; /* Match border radius with other sections */
+  background-color: #f7f7f9; /* Keep consistent background color */
+  padding: 10px; /* Add padding for spacing */
+}
+
+.feedback-item {
+  margin-bottom: 10px; /* Space between feedback items */
+  font-size: 16px; /* Adjust font size */
+  color: #333333; /* Consistent text color */
+}
+
+ 
