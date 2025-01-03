@@ -234,6 +234,11 @@ button:hover {
 body {
   font-family: 'Arial', sans-serif;
   background-color: #f4f4f4;
+  
+   
+   
+    
+ 
 }
 
 
@@ -370,7 +375,10 @@ button {
 button:hover {
   background-color: #f48b68;
 }
-
+.input-icon{
+  justify-content: center;
+  align-items: center;
+}
 
 .popup-overlay {
   position: fixed;
