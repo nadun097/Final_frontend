@@ -1,28 +1,70 @@
-import React, { useState } from "react";
-import NavigationBar from "./NavigationBar";
+import React, { useEffect, useState } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 import "./ProjectDetails.css";
+import axios from "axios";
+import NavigationBar from "./NavigationBar";
 
-const ProjectDetails = ({ project, onBack }) => {
-  const [activeTab, setActiveTab] = useState("AMC");
+const ProjectDetails = () => {
+  const { contractName } = useParams();
+  const [project, setProject] = useState(null);
+  const [error, setError] = useState("");
+  const navigate = useNavigate(); // Initialize the navigate hook
+
+  useEffect(() => {
+    const getProjectDetails = async () => {
+      try {
+        const response = await axios.get(
+          `http://localhost:8080/api/addAmcs/projectDetails/${contractName}`
+        );
+
+        if (response.data && response.data.length > 0) {
+          setProject(response.data[0]); // Assuming the first result for the contract name
+        } else {
+          setError("No project details found for this contract.");
+        }
+      } catch (err) {
+        setError("Error fetching project details. Please try again.");
+      }
+    };
+
+    getProjectDetails();
+  }, [contractName]);
+
+  if (error) {
+    return <div className="error-message">{error}</div>;
+  }
+
+  if (!project) {
+    return <div>Error: Project data not available</div>;
+  }
 
   return (
-    <div className="project-details">
-      
-      <NavigationBar activeTab={activeTab} setActiveTab={setActiveTab} />
-      <h2>{project.name}</h2>
-      <p><strong>Description:</strong> {project.description}</p>
-      <p><strong>Start Date:</strong> {project.startDate}</p>
-      <p><strong>End Date:</strong> {project.endDate}</p>
-      
-      <div className="tab-content">
-        {activeTab === "AMC" && <p>AMC details for {project.name}.</p>}
-        {activeTab === "Payments" && <p>Payment details for {project.name}.</p>}
-        {activeTab === "Feedback" && <p>Feedback for {project.name}.</p>}
+    <>
+      <NavigationBar />
+      <div className="project-details-container">
+        <h2>{project.contractName}</h2>
+        <p>
+          <strong>AMCID:</strong> {project.amcId}
+        </p>
+        <p>
+          <strong>Category:</strong> {project.category}
+        </p>
+        <p>
+          <strong>Description:</strong> {project.description}
+        </p>
+        <p>
+          <strong>Start Date:</strong> {project.startDate}
+        </p>
+        <p>
+          <strong>End Date:</strong> {project.endDate}
+        </p>
+        <p>
+          <strong>Cost:</strong> {project.cost}
+        </p>
+
+        <button onClick={() => navigate("/dashboard")}>Back</button>
       </div>
-      <button className="back-button" onClick={onBack}>
-        &larr; Back to Projects
-      </button>
-    </div>
+    </>
   );
 };
 

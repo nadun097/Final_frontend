@@ -18,8 +18,8 @@ export default function AddAmc() {
     companyAddress: "",
   });
 
-  const [errors, setErrors] = useState({}); // State to store validation errors
   const [isEditing, setIsEditing] = useState(false);
+
   const [clients, setClients] = useState([]);
   const [tableData, setTableData] = useState([]);
   const [popup, setPopup] = useState({ message: "", isOpen: false, isError: false });
@@ -71,39 +71,8 @@ export default function AddAmc() {
     setFormData({ ...formData, [name]: value });
   };
 
-  const validateForm = () => {
-    const validationErrors = {};
-
-    if (!formData.userId) validationErrors.userId = "Client is required.";
-    if (!formData.contractName.trim()) validationErrors.contractName = "Contract Name is required.";
-    if (!formData.category) validationErrors.category = "Category is required.";
-    if (!formData.description.trim()) validationErrors.description = "Description is required.";
-    if (!formData.startDate) validationErrors.startDate = "Start Date is required.";
-    if (!formData.endDate) validationErrors.endDate = "End Date is required.";
-    if (formData.startDate && formData.endDate && new Date(formData.startDate) > new Date(formData.endDate)) {
-      validationErrors.startDate = "Start Date cannot be after End Date.";
-    }
-    if (!formData.cost || isNaN(formData.cost) || formData.cost <= 0) {
-      validationErrors.cost = "Cost must be a positive number.";
-    }
-    if (!formData.companyName.trim()) validationErrors.companyName = "Company Name is required.";
-    if (!formData.companyEmail.trim() || !/\S+@\S+\.\S+/.test(formData.companyEmail)) {
-      validationErrors.companyEmail = "A valid Company Email is required.";
-    }
-    if (!formData.companyPhone.trim() || !/^\d{10,15}$/.test(formData.companyPhone)) {
-      validationErrors.companyPhone = "Company Phone must contain 10-15 numbers.";
-    }
-    if (!formData.companyAddress.trim()) validationErrors.companyAddress = "Company Address is required.";
-
-    setErrors(validationErrors);
-    return Object.keys(validationErrors).length === 0; // Return true if no errors
-  };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!validateForm()) return; 
-
-
     try {
       const { amcId, ...dataToSubmit } = formData;
       const response = await axios.post("http://localhost:8080/api/addAmcs/addAmc", dataToSubmit);
@@ -200,7 +169,6 @@ export default function AddAmc() {
 
   const closePopup = () => {
     setPopup({ message: "", isOpen: false, isError: false });
-    window.location.reload();
   };
 
   return (
@@ -212,12 +180,12 @@ export default function AddAmc() {
         
           {[
             { label: "AMC Id", name: "amcId", type: "text", disabled: true },
-            { label: "Client Id", name: "userId", type: "select", options: clients.map(client => ({ value: client.id, label: `${client.id} - ${client.name}` })) },
+            { label: "Client Id", name: "userId", type: "select", options: clients.map(client => ({ value: client.id, label: `${client.id} - ${client.name} `})) },
             { label: "Contract Name", name: "contractName", type: "text" },
             { label: "Category", name: "category", type: "select", options: ["Web Application", "Mobile Application", "Desktop Application", "Hybrid Application"].map(opt => ({ value: opt, label: opt })) },
             { label: "Description", name: "description", type: "textarea" },
-            { label: "Cost", name: "cost", type: "number" },
-            
+            { label: "Start Date", name: "startDate", type: "date" },
+         
           ].map((field, index) => (
             <div className="form-group" key={index}>
               <label>{field.label}</label>
@@ -231,16 +199,14 @@ export default function AddAmc() {
               ) : (
                 <input type={field.type} name={field.name} value={formData[field.name]} onChange={handleChange} disabled={field.disabled || false} />
               )}
-
-            {errors[field.name] && <p className="error">{errors[field.name]}</p>}
             </div>
           ))} 
          </form> 
         
         <form className="amc-form">
           {[
-          { label: "Start Date", name: "startDate", type: "date" },
-          { label: "End Date", name: "endDate", type: "date" },
+             { label: "End Date", name: "endDate", type: "date" },
+             { label: "Cost", name: "cost", type: "number" },
             { label: "Company Name", name: "companyName", type: "text" },
             { label: "Company Email", name: "companyEmail", type: "email" },
             { label: "Company Phone", name: "companyPhone", type: "tel" },
@@ -248,45 +214,25 @@ export default function AddAmc() {
           ].map((field, index) => (
             <div className="form-group" key={index}>
               <label>{field.label}</label>
-
-              {field.type === "textarea" ? (
-              <textarea name={field.name} value={formData[field.name]} onChange={handleChange}></textarea>
-            ) : field.type === "select" ? (
-              <select name={field.name} value={formData[field.name]} onChange={handleChange}>
-                <option value="">Select {field.label}</option>
-                {field.options.map((opt, i) => (
-                  <option key={i} value={opt.value}>
-                    {opt.label}
-                  </option>
-                ))}
-              </select>
-            ) : ( 
-
-
-
               <input type={field.type} name={field.name} value={formData[field.name]} onChange={handleChange} />
-            )}
-
-            {errors[field.name] && <p className="error">{errors[field.name]}</p>}
-
             </div>
           ))}
-         
+          
 
-        <div className="button-group">
-          {isEditing ? (
-            <button type="button" className="update-button" onClick={handleSaveUpdate}>
-               Save Changes
-               </button>
-              ) : (
-             <button type="submit" className="submit-button" onClick={handleSubmit}>
-                 Submit
-             </button>
-           )}
-           <button type="button" className="clear-button" onClick={handleClear}>
-             Clear
-            </button>
-          </div>
+<div className="button-group">
+  {isEditing ? (
+    <button type="button" className="update-button" onClick={handleSaveUpdate}>
+      Save Changes
+    </button>
+  ) : (
+    <button type="submit" className="submit-button" onClick={handleSubmit}>
+      Submit
+    </button>
+  )}
+  <button type="button" className="clear-button" onClick={handleClear}>
+    Clear
+  </button>
+</div>
 
 
           </form>
