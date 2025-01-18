@@ -1,12 +1,8 @@
-
 import React, { useState, useEffect } from "react";
 import { jsPDF } from "jspdf";
 import autoTable from "jspdf-autotable";
 import axios from "axios";
 import "./ClientWiseAmcs.css";
-
-import 'jspdf-autotable';
-
 
 export default function ClientWiseAmcReport() {
   const [amcData, setAmcData] = useState([]);
@@ -88,4 +84,3 @@ export default function ClientWiseAmcReport() {
     </div>
   );
 }
-
