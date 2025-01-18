@@ -20,12 +20,12 @@ const ForgotPasswordAndVerify = () => {
         try {
           const response = await axios.post("http://localhost:8080/api/email/forgot-password", { email });
           if (response.status === 200) {
-            window.alert(response.data); // Display success message
+            window.alert(response.data); 
             setStep("verify");
           }
         } catch (err) {
           const errorMsg = err.response?.data || "Failed to process your request. Please try again.";
-          window.alert(errorMsg); // Display error message
+          window.alert(errorMsg); 
         }
       };
       

@@ -1,9 +1,7 @@
 import React, { useState } from "react";
 import jsPDF from "jspdf";
 import 'jspdf-autotable';
-import './AmcPayments.css';
-
-
+import './AmcPayment.css';
 
 
 export default function CostReport() {
